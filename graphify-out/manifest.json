@@ -1,0 +1,142 @@
+{
+  "app/berita/page.js": {
+    "mtime": 1784534726.4238694,
+    "ast_hash": "ff70dd4b50bce05ffb3e794e1d776a95",
+    "semantic_hash": "ff70dd4b50bce05ffb3e794e1d776a95"
+  },
+  "app/keberlanjutan/page.js": {
+    "mtime": 1784534789.3128781,
+    "ast_hash": "3c22da6ecaf62964ebec4662b48b576f",
+    "semantic_hash": "3c22da6ecaf62964ebec4662b48b576f"
+  },
+  "app/kontak/page.js": {
+    "mtime": 1784517858.0180585,
+    "ast_hash": "e2233fee75b2574e417ec6a2908c0ded",
+    "semantic_hash": "e2233fee75b2574e417ec6a2908c0ded"
+  },
+  "app/layout.js": {
+    "mtime": 1784534311.5141869,
+    "ast_hash": "517589cf975c4f7192ae9ccb286b96d9",
+    "semantic_hash": "517589cf975c4f7192ae9ccb286b96d9"
+  },
+  "app/login/page.js": {
+    "mtime": 1784533131.9117365,
+    "ast_hash": "0f4cbf6561692e5686694e77ccb87360",
+    "semantic_hash": "0f4cbf6561692e5686694e77ccb87360"
+  },
+  "app/page.js": {
+    "mtime": 1784535416.1379402,
+    "ast_hash": "9034dd305b848901a2efedba423c011a",
+    "semantic_hash": "9034dd305b848901a2efedba423c011a"
+  },
+  "app/produk/page.js": {
+    "mtime": 1784534671.3322887,
+    "ast_hash": "3e5d0f03d8089fe2580d083caaf5cb74",
+    "semantic_hash": "3e5d0f03d8089fe2580d083caaf5cb74"
+  },
+  "app/tentang/page.js": {
+    "mtime": 1784534629.1166606,
+    "ast_hash": "2f262bd26e5f041a583db6db449a1058",
+    "semantic_hash": "2f262bd26e5f041a583db6db449a1058"
+  },
+  "components/Footer.js": {
+    "mtime": 1784517610.8494194,
+    "ast_hash": "4ef3f168223e3eecc015a6536bdef845",
+    "semantic_hash": "4ef3f168223e3eecc015a6536bdef845"
+  },
+  "components/HeroTitle.js": {
+    "mtime": 1784535358.3429625,
+    "ast_hash": "7098ad38715d0a510f49a1159f8027c0",
+    "semantic_hash": "7098ad38715d0a510f49a1159f8027c0"
+  },
+  "components/Icon.js": {
+    "mtime": 1784532849.1112611,
+    "ast_hash": "22b6ff6d66f930bd0b0edd8fbb77cdc1",
+    "semantic_hash": "22b6ff6d66f930bd0b0edd8fbb77cdc1"
+  },
+  "components/LangToggle.js": {
+    "mtime": 1784535246.4724035,
+    "ast_hash": "8716c1d09874aa7b4ed9bfc5da32f803",
+    "semantic_hash": "8716c1d09874aa7b4ed9bfc5da32f803"
+  },
+  "components/LanguageProvider.js": {
+    "mtime": 1784533992.9527266,
+    "ast_hash": "8dfa7bb12816855a726a84647e0a5243",
+    "semantic_hash": "8dfa7bb12816855a726a84647e0a5243"
+  },
+  "components/Marquee.js": {
+    "mtime": 1784517594.7219398,
+    "ast_hash": "0047d73de191b2db43bd2a1f4d2a6da7",
+    "semantic_hash": "0047d73de191b2db43bd2a1f4d2a6da7"
+  },
+  "components/Navbar.js": {
+    "mtime": 1784535233.450958,
+    "ast_hash": "3f8a841ed0fa3ed03fb41016937b3868",
+    "semantic_hash": "3f8a841ed0fa3ed03fb41016937b3868"
+  },
+  "components/PageTransition.js": {
+    "mtime": 1784532221.848176,
+    "ast_hash": "581426f29c134e9d1316d537d522523f",
+    "semantic_hash": "581426f29c134e9d1316d537d522523f"
+  },
+  "components/Reveal.js": {
+    "mtime": 1784535588.0333734,
+    "ast_hash": "324d91b089af1146b06b4edeb5947722",
+    "semantic_hash": "324d91b089af1146b06b4edeb5947722"
+  },
+  "components/ThemeToggle.js": {
+    "mtime": 1784532861.00487,
+    "ast_hash": "0cb4e34d557aa5adb2e7cc7f1d01cb00",
+    "semantic_hash": "0cb4e34d557aa5adb2e7cc7f1d01cb00"
+  },
+  "jsconfig.json": {
+    "mtime": 1784514519.2477963,
+    "ast_hash": "1785e71c7510902b04f35784b434ec4b",
+    "semantic_hash": "1785e71c7510902b04f35784b434ec4b"
+  },
+  "lib/i18n.js": {
+    "mtime": 1784533973.9267235,
+    "ast_hash": "01f2a4c66deda21b8d5146aa20658086",
+    "semantic_hash": "01f2a4c66deda21b8d5146aa20658086"
+  },
+  "lib/site.js": {
+    "mtime": 1784534756.66086,
+    "ast_hash": "14795f2cb9f83d9e264dc779d3a81b60",
+    "semantic_hash": "14795f2cb9f83d9e264dc779d3a81b60"
+  },
+  "next.config.mjs": {
+    "mtime": 1784517958.0059037,
+    "ast_hash": "9430769833db8646880c5198dc80c450",
+    "semantic_hash": "9430769833db8646880c5198dc80c450"
+  },
+  "package.json": {
+    "mtime": 1784515224.155449,
+    "ast_hash": "608f87d9810226584fbf239319bae074",
+    "semantic_hash": "608f87d9810226584fbf239319bae074"
+  },
+  "image.png": {
+    "mtime": 1784533432.754444,
+    "ast_hash": "5474c8d0a4c251e20e00d27f264505bf",
+    "semantic_hash": "5474c8d0a4c251e20e00d27f264505bf"
+  },
+  "public/img/home.png": {
+    "mtime": 1784534288.0993097,
+    "ast_hash": "28e5cd454ad08fc065bf39e017cdf25b",
+    "semantic_hash": "28e5cd454ad08fc065bf39e017cdf25b"
+  },
+  "public/img/karet-1-1-scaled.jpg": {
+    "mtime": 1784534310.8191793,
+    "ast_hash": "71e48a04df303259059e53494b29e2af",
+    "semantic_hash": "71e48a04df303259059e53494b29e2af"
+  },
+  "public/img/pabrik-2-1.png": {
+    "mtime": 1784534305.8910522,
+    "ast_hash": "1413d72b5f9e85708f3555894a36c50d",
+    "semantic_hash": "1413d72b5f9e85708f3555894a36c50d"
+  },
+  "public/img/produksi-karet-1.webp": {
+    "mtime": 1784534299.6036844,
+    "ast_hash": "0b088a28d27466cc5416f224c56a00ca",
+    "semantic_hash": "0b088a28d27466cc5416f224c56a00ca"
+  }
+}

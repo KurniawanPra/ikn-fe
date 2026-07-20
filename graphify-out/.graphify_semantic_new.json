@@ -1,0 +1,618 @@
+{
+  "nodes": [
+    {
+      "id": "image_tracking_table",
+      "label": "Website Feature Tracking Table (Table1)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_spreadsheet_ui",
+      "label": "Google Sheets-style Spreadsheet UI",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_website_sitemap",
+      "label": "Website Sitemap / Feature List",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_section_about_us",
+      "label": "About Us Section (History, Vision and Mission, Contact Us)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_section_business",
+      "label": "Business Section (Resiprene Products, Rubber Articles Products)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_section_media",
+      "label": "Media Section (Galery, News)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_section_sustainability",
+      "label": "Sustainability Section (Certificate, Our Customers, Brochures, Whistle Blowing System, Reach Compliance)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_feature_bahasa",
+      "label": "Fitur Bahasa (Indonesia - Inggris language feature)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_status_open",
+      "label": "Status: Open (all items)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "image_ikn_project",
+      "label": "IKN Revisi Web Project",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_home",
+      "label": "Homepage Screenshot",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_home_hero",
+      "label": "Hero Section",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_home_navbar",
+      "label": "Navigation Bar",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_home_landing_page",
+      "label": "Landing Page Layout",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_home_ikn_project",
+      "label": "IKN Project Web UI",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_home_content_section",
+      "label": "Content Section",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_karet_1_1_scaled_photo",
+      "label": "Rubber Tree Latex Tapping Photo",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_karet_1_1_scaled_rubber_tree",
+      "label": "Rubber Tree (Karet / Hevea brasiliensis)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_karet_1_1_scaled_latex",
+      "label": "Natural Latex / Rubber Sap",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_karet_1_1_scaled_tapping",
+      "label": "Rubber Tapping (Penyadapan)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_karet_1_1_scaled_plantation",
+      "label": "Rubber Plantation Commodity",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pabrik_2_1_image",
+      "label": "Pabrik 2-1 Factory Illustration",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pabrik_2_1_factory",
+      "label": "Industrial Factory Facility",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pabrik_2_1_industrial_facility",
+      "label": "Industrial Manufacturing Concept",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pabrik_2_1_ikn_project",
+      "label": "IKN Project Asset",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_produksi_karet_1_image",
+      "label": "Rubber Production Photo",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\produksi-karet-1.webp",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_produksi_karet_1_rubber",
+      "label": "Natural Rubber (Karet)",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\produksi-karet-1.webp",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_produksi_karet_1_production",
+      "label": "Rubber Production Activity",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\produksi-karet-1.webp",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_produksi_karet_1_agriculture",
+      "label": "Agriculture / Plantation Commodity",
+      "file_type": "image",
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\produksi-karet-1.webp",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "image_tracking_table",
+      "target": "image_spreadsheet_ui",
+      "relation": "rendered_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_tracking_table",
+      "target": "image_website_sitemap",
+      "relation": "documents",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_website_sitemap",
+      "target": "image_section_about_us",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_website_sitemap",
+      "target": "image_section_business",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_website_sitemap",
+      "target": "image_section_media",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_website_sitemap",
+      "target": "image_section_sustainability",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_website_sitemap",
+      "target": "image_feature_bahasa",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_tracking_table",
+      "target": "image_status_open",
+      "relation": "tracks_status_of",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_website_sitemap",
+      "target": "image_ikn_project",
+      "relation": "part_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "image_feature_bahasa",
+      "target": "image_status_open",
+      "relation": "has_status",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\image.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_home",
+      "target": "public_img_home_landing_page",
+      "relation": "depicts",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_home_landing_page",
+      "target": "public_img_home_navbar",
+      "relation": "contains",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_home_landing_page",
+      "target": "public_img_home_hero",
+      "relation": "contains",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_home_landing_page",
+      "target": "public_img_home_content_section",
+      "relation": "contains",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_home",
+      "target": "public_img_home_ikn_project",
+      "relation": "part_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_home_hero",
+      "target": "public_img_home_navbar",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\home.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_karet_1_1_scaled_photo",
+      "target": "public_img_karet_1_1_scaled_rubber_tree",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_karet_1_1_scaled_rubber_tree",
+      "target": "public_img_karet_1_1_scaled_latex",
+      "relation": "produces",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_karet_1_1_scaled_tapping",
+      "target": "public_img_karet_1_1_scaled_latex",
+      "relation": "harvests",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_karet_1_1_scaled_tapping",
+      "target": "public_img_karet_1_1_scaled_rubber_tree",
+      "relation": "performed_on",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_karet_1_1_scaled_rubber_tree",
+      "target": "public_img_karet_1_1_scaled_plantation",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_karet_1_1_scaled_photo",
+      "target": "public_img_karet_1_1_scaled_plantation",
+      "relation": "illustrates",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\karet-1-1-scaled.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_pabrik_2_1_image",
+      "target": "public_img_pabrik_2_1_factory",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_pabrik_2_1_factory",
+      "target": "public_img_pabrik_2_1_industrial_facility",
+      "relation": "is_instance_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_pabrik_2_1_image",
+      "target": "public_img_pabrik_2_1_ikn_project",
+      "relation": "asset_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_pabrik_2_1_factory",
+      "target": "public_img_pabrik_2_1_ikn_project",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\pabrik-2-1.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_produksi_karet_1_image",
+      "target": "public_img_produksi_karet_1_production",
+      "relation": "depicts",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\produksi-karet-1.webp",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_produksi_karet_1_production",
+      "target": "public_img_produksi_karet_1_rubber",
+      "relation": "produces",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\produksi-karet-1.webp",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_img_produksi_karet_1_rubber",
+      "target": "public_img_produksi_karet_1_agriculture",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "D:\\SMKAW02PDN\\Laporan PKL\\Project\\ikn-revisi-2\\public\\img\\produksi-karet-1.webp",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

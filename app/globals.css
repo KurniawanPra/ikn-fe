@@ -1,0 +1,278 @@
+:root {
+  /* Palet kertas hangat + hijau karet + oker getah */
+  --paper: #f2efe6;
+  --paper-2: #eae6d9;
+  --surface: #fbfaf5;
+  --ink: #16130d;
+  --ink-soft: #5b544a;
+  --line: #d7d1c2;
+  --line-strong: #b9b2a0;
+
+  --green: #1f5134;
+  --green-deep: #123423;
+  --green-tint: #e5ede4;
+  --amber: #b9722a;
+  --amber-tint: #f2e4cf;
+
+  /* Neumorphism: warna bayangan + sorotan mengikuti tema */
+  --neu-bg: rgba(255, 255, 255, 0.55);
+  --neu-bg-strong: rgba(255, 255, 255, 0.85);
+  --neu-dark: rgba(148, 138, 114, 0.45);
+  --neu-light: rgba(255, 255, 255, 0.4);
+  --neu-dark-strong: rgba(148, 138, 114, 0.55);
+  --neu-light-strong: rgba(255, 255, 255, 0.6);
+
+  --maxw: 1200px;
+  --gutter: 28px;
+  --nav-h: 60px;
+  --nav-gap: 34px;
+  --nav-round: 999px;
+
+  --ease: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: var(--font-poppins), system-ui, Arial, sans-serif;
+  --font-mono: var(--font-mono-plex), ui-monospace, 'Courier New', monospace;
+}
+
+/* ---------- Mode gelap ---------- */
+[data-theme='dark'] {
+  --paper: #1a1712;
+  --paper-2: #211d17;
+  --surface: #232019;
+  --ink: #f2efe6;
+  --ink-soft: #b7ae9e;
+  --line: #363028;
+  --line-strong: #4a4335;
+
+  --green: #6faf84;
+  --green-deep: #0d1f15;
+  --green-tint: #1c2a20;
+  --amber: #d68f4e;
+  --amber-tint: #33271a;
+
+  --neu-bg: rgba(38, 35, 28, 0.85);
+  --neu-bg-strong: rgba(38, 35, 28, 0.96);
+  --neu-dark: rgba(0, 0, 0, 0.55);
+  --neu-light: rgba(58, 52, 42, 0.6);
+  --neu-dark-strong: rgba(0, 0, 0, 0.65);
+  --neu-light-strong: rgba(64, 57, 46, 0.7);
+
+  color-scheme: dark;
+}
+
+html {
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + var(--nav-gap) + 24px);
+  -webkit-text-size-adjust: 100%;
+  /* Scroll snap per-section — proximity agar section tinggi tidak menjebak scroll */
+  scroll-snap-type: y proximity;
+}
+
+/* Tiap section jadi titik snap; footer juga agar bisa berhenti rapi di bawah */
+main section,
+.footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--green);
+  color: #fff;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Tipografi ---------- */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.display {
+  font-size: clamp(2.7rem, 7vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+.h3 {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 54ch;
+  font-weight: 400;
+}
+
+p { color: var(--ink-soft); }
+
+/* Label teknis monospace — kunci rasa industrial */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.label-green { color: var(--green); }
+.label-amber { color: var(--amber); }
+
+.index {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  font-weight: 500;
+}
+
+/* ---------- Link teks ---------- */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--ink);
+  transition: gap 0.3s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.link:hover {
+  gap: 16px;
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.link svg { width: 15px; height: 15px; }
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 15px 26px;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.btn svg { width: 15px; height: 15px; transition: transform 0.3s var(--ease); }
+.btn:hover svg { transform: translateX(5px); }
+
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-solid:hover { background: var(--green); border-color: var(--green); }
+
+.btn-line:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-amber {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+}
+.btn-amber:hover { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* ---------- Reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ---------- Page transition (fade in / fade out) ---------- */
+.page-fade {
+  transition: opacity 0.34s var(--ease), transform 0.34s var(--ease), filter 0.34s var(--ease);
+  will-change: opacity, transform;
+}
+.page-fade.is-in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+.page-fade.is-out {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .page-fade { transition: none; }
+  .page-fade.is-out { opacity: 1; transform: none; filter: none; }
+  html { scroll-behavior: auto; scroll-snap-type: none; }
+  .page-fade > section, .page-fade, .footer { scroll-snap-align: none; }
+  .marquee-track { animation: none !important; }
+}
+
+/* ---------- Util ---------- */
+.section { padding: clamp(72px, 11vw, 150px) 0; }
+.section-tight { padding: clamp(48px, 7vw, 90px) 0; }
+.rule { height: 1px; background: var(--line); border: 0; }
+.center { text-align: center; }
+.mx-auto { margin-left: auto; margin-right: auto; }
