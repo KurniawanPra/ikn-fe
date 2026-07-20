@@ -270,6 +270,21 @@ p { color: var(--ink-soft); }
   .marquee-track { animation: none !important; }
 }
 
+/* ---------- Fit tiap section ke tinggi layar + ruang navbar mengambang ----------
+   Setiap <section> (kecuali hero yang sudah punya aturan sendiri) mengisi satu
+   layar penuh dan mengetengahkan kontennya secara vertikal. min-height dipakai
+   agar konten panjang (daftar produk, timeline) tetap tumbuh tanpa terpotong. */
+main section:not(.hero) {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: calc(var(--nav-h) + var(--nav-gap) + 28px);
+  padding-bottom: clamp(32px, 5vh, 64px);
+}
+main section:not(.hero) > .container,
+main section:not(.hero) > .cta-inner { width: 100%; }
+
 /* ---------- Util ---------- */
 .section { padding: clamp(72px, 11vw, 150px) 0; }
 .section-tight { padding: clamp(48px, 7vw, 90px) 0; }
