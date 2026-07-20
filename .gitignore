@@ -6,3 +6,9 @@
 *.pem
 npm-debug.log*
 .env*.local
+
+# Project-specific ignored files/folders
+/website_old_ikn_hasil_scrapping
+flow.pdf
+klasifikasi-website-ikn.pdf
+SPESIFIKASI-WEBSITE-BARU-IKN.md

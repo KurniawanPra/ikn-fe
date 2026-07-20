@@ -37,9 +37,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <Marquee />
       </section>
-
-      <Marquee />
 
       {/* STATS — baris data */}
       <section className="section-tight">

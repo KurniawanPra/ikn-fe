@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from '@/components/ThemeToggle';
 import LangToggle from '@/components/LangToggle';
@@ -35,7 +36,7 @@ export default function Navbar() {
     <header className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav-inner container">
         <Link href="/" className="nav-brand" aria-label="PT Industri Karet Nusantara">
-          <span className="nav-mark" aria-hidden="true">IKN</span>
+          <Image src="/img/rubin-logo.png" alt="Rubin Logo" width={40} height={40} priority />
           <span className="nav-brand-meta">
             <span>Industri Karet</span>
             <span>Nusantara</span>

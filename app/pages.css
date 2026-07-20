@@ -54,8 +54,8 @@
 
 .hero-slider-dots {
   position: absolute;
-  z-index: 2;
-  bottom: clamp(20px, 4vw, 40px);
+  z-index: 15;
+  bottom: calc(clamp(20px, 4vw, 40px) + 50px); /* Diberi jarak ekstra agar tidak tertutup marquee */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -119,25 +119,31 @@
 .hero-video-section .hero-title {
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   color: #ffffff;
-  transition: color 0.5s var(--ease), text-shadow 0.5s var(--ease);
+  transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1), text-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+  display: inline-block;
+}
+.hero-video-section .hero-title:hover {
+  transform: scale(1.02);
 }
 .hero-video-section .hero-title-em {
   color: #8fd1a6;
   font-style: italic;
-  transition: color 0.5s var(--ease);
+  transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
 }
+
 .hero-video-section .lead {
   font-size: clamp(0.95rem, 1.2vw, 1.1rem);
   max-width: 65ch;
   color: rgba(255, 255, 255, 0.86);
-  transition: color 0.5s var(--ease);
+  transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Dark mode: judul menghangat ke warna kertas, aksen hijau lebih pekat */
 [data-theme='dark'] .hero-video-section .hero-title {
   color: var(--ink);
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
 }
 [data-theme='dark'] .hero-video-section .hero-title-em { color: var(--green); }
 [data-theme='dark'] .hero-video-section .hero-meta .label-green { color: var(--green); }
