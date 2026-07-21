@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from '@/components/ThemeToggle';
 import LangToggle from '@/components/LangToggle';
+import CartButton from '@/components/CartButton';
 import { useLang } from '@/components/LanguageProvider';
 import { navTree, t } from '@/lib/i18n';
 import Icon from '@/components/Icon';
@@ -111,6 +112,7 @@ export default function Navbar() {
         <div className="nav-actions">
           <LangToggle />
           <ThemeToggle />
+          <CartButton />
           <Link href="/login" className="nav-cta">
             {ui.login}
           </Link>

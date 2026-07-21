@@ -1,11 +1,12 @@
 import './globals.css';
 import './pages.css';
 import '@/components/chrome.css';
+import '@/components/commerce.css';
+import '@/components/admin.css';
 import { Poppins, IBM_Plex_Mono } from 'next/font/google';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import PageTransition from '@/components/PageTransition';
 import { LanguageProvider } from '@/components/LanguageProvider';
+import { CartProvider } from '@/components/CartProvider';
+import { AuthProvider } from '@/components/AuthProvider';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,6 +23,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://ikn.co.id'),
   title: {
     default: 'PT Industri Karet Nusantara — Hilir Karet Berkualitas',
     template: '%s · PT IKN',
@@ -44,11 +46,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <LanguageProvider>
-          <Navbar />
-          <main>
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
+          <AuthProvider>
+            <CartProvider>{children}</CartProvider>
+          </AuthProvider>
         </LanguageProvider>
       </body>
     </html>

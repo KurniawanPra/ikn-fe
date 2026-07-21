@@ -71,7 +71,7 @@ html {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + var(--nav-gap) + 24px);
+  scroll-padding-top: calc(var(--nav-h) + var(--nav-gap) + 48px);
   -webkit-text-size-adjust: 100%;
   /* Scroll snap per-section — proximity agar section tinggi tidak menjebak scroll */
   scroll-snap-type: y proximity;

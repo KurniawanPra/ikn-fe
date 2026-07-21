@@ -250,6 +250,37 @@
   gap: 12px;
 }
 
+/* Tombol keranjang di navbar */
+.nav-cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--ink-soft);
+  background: var(--neu-bg);
+  box-shadow: 3px 3px 8px var(--neu-dark), -3px -3px 8px var(--neu-light);
+  transition: color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.nav-cart:hover { color: var(--green); transform: translateY(-1px); }
+.nav-cart-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--amber);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  display: grid;
+  place-items: center;
+}
+
 /* Tombol toggle tema — bulat, soft neumorphic */
 .nav-theme {
   display: inline-flex;
@@ -303,9 +334,14 @@
 @media (max-width: 900px) {
   .nav-cta { display: none; }
   .nav-toggle { display: flex; }
+  
+  /* Reset padding berlebih di mobile agar pas */
+  .nav-inner { padding-inline: 16px; padding-block: 8px; }
+  .nav.is-scrolled .nav-inner { padding-inline: 20px; }
+
   .nav-links {
     position: absolute;
-    top: calc(var(--nav-h) + 10px);
+    top: calc(100% + 10px); /* Memastikan dropdown muncul tepat di bawah navbar */
     left: var(--gutter);
     right: var(--gutter);
     flex-direction: column;
@@ -345,15 +381,15 @@
     justify-content: space-between;
   }
   .nav-dropdown {
-    position: static;
-    transform: none;
+    position: static !important;
+    transform: none !important;
     min-width: 0;
     padding-top: 0;
     max-height: 0;
     overflow: hidden;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
     transition: max-height 0.35s var(--ease);
   }
   .nav-item-drop.is-open .nav-dropdown { max-height: 420px; }

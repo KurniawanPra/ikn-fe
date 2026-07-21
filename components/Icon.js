@@ -63,6 +63,7 @@ const paths = {
   ),
   check: <path d="M4 12l5 5L20 6" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  close: <path d="M6 6l12 12M18 6 6 18" />,
   quote: (
     <path d="M7 7H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3v1a2 2 0 0 1-2 2H4M20 7h-3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3v1a2 2 0 0 1-2 2h-1" />
   ),

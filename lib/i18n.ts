@@ -29,9 +29,10 @@ export const navTree = {
       label: 'Bisnis',
       href: '/produk',
       children: [
+        { label: 'Katalog Produk', href: '/catalog', desc: 'Belanja & lihat semua produk' },
         { label: 'Resiprene 35', href: '/produk#resiprene-35', desc: 'Cyclised natural rubber' },
         { label: 'Aneka Barang Karet', href: '/produk#barang-karet', desc: 'Rubber article products' },
-        { label: 'Semua Produk', href: '/produk', desc: 'Lini produk lengkap' },
+        { label: 'Unduhan', href: '/unduhan', desc: 'Brosur produk (PDF)' },
       ],
     },
     {
@@ -39,16 +40,18 @@ export const navTree = {
       href: '/berita',
       children: [
         { label: 'Berita Terbaru', href: '/berita', desc: 'Kabar & rilis terkini' },
-        { label: 'Sorotan', href: '/berita#sorotan', desc: 'Berita utama' },
+        { label: 'Galeri', href: '/galeri', desc: 'Foto & video' },
       ],
     },
     {
       label: 'Keberlanjutan',
       href: '/keberlanjutan',
       children: [
-        { label: 'Lingkungan', href: '/keberlanjutan#lingkungan', desc: 'Praktik ramah lingkungan' },
-        { label: 'Sosial', href: '/keberlanjutan#sosial', desc: 'Dampak bagi masyarakat' },
-        { label: 'Tata Kelola', href: '/keberlanjutan#tata-kelola', desc: 'Good corporate governance' },
+        { label: 'Lingkungan, Sosial, Tata Kelola', href: '/keberlanjutan', desc: 'Komitmen ESG kami' },
+        { label: 'Sertifikat', href: '/keberlanjutan/sertifikat', desc: 'ISO 37001 & REACH' },
+        { label: 'Pelanggan Kami', href: '/keberlanjutan/pelanggan', desc: 'Mitra lintas industri' },
+        { label: 'REACH Compliance', href: '/keberlanjutan/reach', desc: 'Kepatuhan pasar Eropa' },
+        { label: 'Whistle Blowing System', href: '/keberlanjutan/whistleblowing', desc: 'Kanal pelaporan aman' },
       ],
     },
     { label: 'Kontak', href: '/kontak' },
@@ -69,9 +72,10 @@ export const navTree = {
       label: 'Business',
       href: '/produk',
       children: [
+        { label: 'Product Catalog', href: '/catalog', desc: 'Shop & browse all products' },
         { label: 'Resiprene 35', href: '/produk#resiprene-35', desc: 'Cyclised natural rubber' },
         { label: 'Rubber Articles', href: '/produk#barang-karet', desc: 'Rubber article products' },
-        { label: 'All Products', href: '/produk', desc: 'Full product line' },
+        { label: 'Downloads', href: '/unduhan', desc: 'Product brochures (PDF)' },
       ],
     },
     {
@@ -79,16 +83,18 @@ export const navTree = {
       href: '/berita',
       children: [
         { label: 'Latest News', href: '/berita', desc: 'Recent updates & releases' },
-        { label: 'Highlight', href: '/berita#sorotan', desc: 'Featured story' },
+        { label: 'Gallery', href: '/galeri', desc: 'Photos & videos' },
       ],
     },
     {
       label: 'Sustainability',
       href: '/keberlanjutan',
       children: [
-        { label: 'Environment', href: '/keberlanjutan#lingkungan', desc: 'Eco-friendly practices' },
-        { label: 'Social', href: '/keberlanjutan#sosial', desc: 'Community impact' },
-        { label: 'Governance', href: '/keberlanjutan#tata-kelola', desc: 'Good corporate governance' },
+        { label: 'Environment, Social, Governance', href: '/keberlanjutan', desc: 'Our ESG commitment' },
+        { label: 'Certificates', href: '/keberlanjutan/sertifikat', desc: 'ISO 37001 & REACH' },
+        { label: 'Our Customers', href: '/keberlanjutan/pelanggan', desc: 'Partners across industries' },
+        { label: 'REACH Compliance', href: '/keberlanjutan/reach', desc: 'EU market compliance' },
+        { label: 'Whistle Blowing System', href: '/keberlanjutan/whistleblowing', desc: 'Secure reporting channel' },
       ],
     },
     { label: 'Contact', href: '/kontak' },
