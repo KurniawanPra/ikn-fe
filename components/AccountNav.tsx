@@ -7,9 +7,12 @@ import { useAuth } from '@/components/AuthProvider';
 import type { IconName } from '@/lib/types';
 
 const links: { href: string; label: string; icon: IconName; exact?: boolean }[] = [
-  { href: '/akun', label: 'Ringkasan', icon: 'target', exact: true },
-  { href: '/akun/pesanan', label: 'Pesanan saya', icon: 'drop' },
-  { href: '/akun/profil', label: 'Profil & alamat', icon: 'handshake' },
+  { href: '/dashboard', label: 'Dashboard', icon: 'target', exact: true },
+  { href: '/dashboard/pesanan', label: 'Pesanan saya', icon: 'drop' },
+  { href: '/dashboard/profil', label: 'Profil', icon: 'handshake' },
+  { href: '/dashboard/perusahaan', label: 'Perusahaan', icon: 'gear' },
+  { href: '/dashboard/alamat', label: 'Alamat', icon: 'pin' },
+  { href: '/catalog', label: 'Kembali ke katalog', icon: 'flask' },
 ];
 
 export default function AccountNav() {

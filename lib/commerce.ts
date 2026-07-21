@@ -10,6 +10,7 @@ import type {
   PaymentStatusKey,
   ShippingMethod,
   StatusLabel,
+  CustomerDashboardStats,
 } from '@/lib/types';
 
 // ---- Status order ----
@@ -70,7 +71,7 @@ export const orders: Order[] = [
   {
     number: 'IKN-20260710-00042',
     date: '2026-07-10T09:24:00',
-    customer: { name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
+    customer: { id: 'c1', name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
     items: [
       { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 100, unit: 'kg', price: 185000 },
     ],
@@ -99,7 +100,7 @@ export const orders: Order[] = [
   {
     number: 'IKN-20260712-00051',
     date: '2026-07-12T16:40:00',
-    customer: { name: 'PT Maritim Warna', email: 'po@maritimwarna.com', pic: 'Sari Dewi' },
+    customer: { id: 'c2', name: 'PT Maritim Warna', email: 'po@maritimwarna.com', pic: 'Sari Dewi' },
     items: [
       { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 50, unit: 'kg', price: 185000 },
     ],
@@ -127,7 +128,7 @@ export const orders: Order[] = [
   {
     number: 'IKN-20260715-00058',
     date: '2026-07-15T11:05:00',
-    customer: { name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
+    customer: { id: 'c1', name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
     items: [
       { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 25, unit: 'kg', price: 185000 },
     ],
@@ -153,7 +154,7 @@ export const orders: Order[] = [
   {
     number: 'IKN-20260628-00019',
     date: '2026-06-28T10:00:00',
-    customer: { name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
+    customer: { id: 'c1', name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
     items: [
       { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 200, unit: 'kg', price: 185000 },
     ],
@@ -188,6 +189,35 @@ export const orders: Order[] = [
 
 export function getOrder(number: string) {
   return orders.find((o) => o.number === number) || null;
+}
+
+export function getOrdersByCustomer(customerId: string): Order[] {
+  return orders
+    .filter((order) => order.customer.id === customerId)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export function getOrderForCustomer(number: string, customerId: string): Order | null {
+  return orders.find(
+    (order) => order.number === number && order.customer.id === customerId
+  ) ?? null;
+}
+
+export function getCustomerDashboardStats(customerId: string): CustomerDashboardStats {
+  const customerOrders = getOrdersByCustomer(customerId);
+  return {
+    totalOrders: customerOrders.length,
+    awaitingPayment: customerOrders.filter((order) =>
+      ['unpaid', 'rejected'].includes(order.payment)
+    ).length,
+    inProgress: customerOrders.filter((order) =>
+      ['awaiting_verification', 'processing', 'packing', 'shipped', 'delivered'].includes(order.status)
+    ).length,
+    completed: customerOrders.filter((order) => order.status === 'completed').length,
+    transactionValue: customerOrders
+      .filter((order) => order.status !== 'cancelled')
+      .reduce((total, order) => total + order.total, 0),
+  };
 }
 
 export function bankById(id: string) {

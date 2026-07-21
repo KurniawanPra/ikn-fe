@@ -136,7 +136,7 @@ export interface OrderTimelineEntry {
 export interface Order {
   number: string;
   date: string;
-  customer: { name: string; email: string; pic: string };
+  customer: { id: string; name: string; email: string; pic: string };
   items: OrderItem[];
   subtotal: number;
   shipping: number;
@@ -152,6 +152,36 @@ export interface Order {
   reviewed?: boolean;
   dueAt?: string;
   timeline: OrderTimelineEntry[];
+}
+
+export interface CustomerAddress {
+  id: string;
+  label: string;
+  recipient: string;
+  phone: string;
+  line: string;
+  primary: boolean;
+}
+
+export interface CustomerProfile {
+  customerId: string;
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  position: string;
+  companyEmail: string;
+  companyPhone: string;
+  taxId: string;
+  addresses: CustomerAddress[];
+}
+
+export interface CustomerDashboardStats {
+  totalOrders: number;
+  awaitingPayment: number;
+  inProgress: number;
+  completed: number;
+  transactionValue: number;
 }
 
 export interface BankAccount {

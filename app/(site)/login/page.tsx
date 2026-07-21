@@ -27,7 +27,7 @@ function LoginForm() {
       return;
     }
     const next = params.get('next');
-    router.push(next && next.startsWith('/') ? next : '/akun');
+    router.push(next && (next === '/dashboard' || next.startsWith('/dashboard/')) ? next : '/dashboard');
   }
 
   const demo = customerCredentials[0];

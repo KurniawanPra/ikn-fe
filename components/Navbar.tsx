@@ -118,7 +118,7 @@ export default function Navbar() {
           <ThemeToggle />
           <CartButton />
           <Link
-            href={customer ? '/akun' : '/login'}
+            href={customer ? '/dashboard' : '/login'}
             className="nav-cta"
           >
             {customer ? customer.name.split(' ')[0] : ui.login}

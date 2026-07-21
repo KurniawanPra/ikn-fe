@@ -67,19 +67,21 @@ export default function AdminShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
-  const { admin, ready, logoutAdmin } = useAuth();
+  const { admin, customer, ready, logoutAdmin } = useAuth();
 
   const isLoginPage = pathname === '/admin/login';
 
   // Guard: jika belum login & bukan halaman login, arahkan ke login.
   useEffect(() => {
-    if (ready && !admin && !isLoginPage) {
+    if (ready && customer) {
+      router.replace('/dashboard');
+    } else if (ready && !admin && !isLoginPage) {
       router.replace('/admin/login');
     }
-  }, [ready, admin, isLoginPage, router]);
+  }, [ready, admin, customer, isLoginPage, router]);
 
   // Halaman login admin tidak memakai shell.
-  if (isLoginPage) return <div className="admin-auth-wrap">{children}</div>;
+  if (isLoginPage && !customer) return <div className="admin-auth-wrap">{children}</div>;
 
   // Tahan render konten admin sampai sesi terverifikasi.
   if (!ready || !admin) {

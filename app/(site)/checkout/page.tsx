@@ -84,7 +84,7 @@ export default function CheckoutPage() {
               </div>
 
               <div className="co-done-actions">
-                <Link href="/akun/pesanan" className="btn btn-solid">Lihat pesanan saya <Icon name="arrow" /></Link>
+                <Link href="/dashboard/pesanan" className="btn btn-solid">Lihat pesanan saya <Icon name="arrow" /></Link>
                 <Link href="/catalog" className="btn btn-line">Lanjut belanja</Link>
               </div>
               <p className="admin-note" style={{ marginTop: 24 }}>Demo — pesanan tidak benar-benar tersimpan tanpa backend.</p>
