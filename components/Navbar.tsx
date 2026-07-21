@@ -11,6 +11,7 @@ import { useLang } from '@/components/LanguageProvider';
 import { useAuth } from '@/components/AuthProvider';
 import { navTree, t } from '@/lib/i18n';
 import Icon from '@/components/Icon';
+import styles from '@/components/Navbar.module.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,17 +37,17 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
-      <div className="nav-inner container">
-        <Link href="/" className="nav-brand" aria-label="PT Industri Karet Nusantara">
+    <header className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${open ? styles.open : ''}`}>
+      <div className={`${styles.inner} container`}>
+        <Link href="/" className={styles.brand} aria-label="PT Industri Karet Nusantara">
           <Image src="/img/rubin-logo.png" alt="Rubin Logo" width={40} height={40} priority />
-          <span className="nav-brand-meta">
+          <span className={styles.brandMeta}>
             <span>Industri Karet</span>
             <span>Nusantara</span>
           </span>
         </Link>
 
-        <nav id="main-navigation" className="nav-links" aria-label="Navigasi utama">
+        <nav id="main-navigation" className={styles.links} aria-label="Navigasi utama">
           {items.map((item) => {
             const itemPath = item.href.split('#')[0] ?? item.href;
             const children = item.children ?? [];
@@ -61,7 +62,7 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`nav-link ${active ? 'is-active' : ''}`}
+                  className={`${styles.link} ${active ? styles.active : ''}`}
                 >
                   {item.label}
                 </Link>
@@ -71,11 +72,11 @@ export default function Navbar() {
             return (
               <div
                 key={item.label}
-                className={`nav-item-drop ${openGroup === item.label ? 'is-open' : ''}`}
+                className={`${styles.itemDrop} ${openGroup === item.label ? styles.expanded : ''}`}
               >
                 <Link
                   href={item.href}
-                  className={`nav-link nav-link-parent ${active ? 'is-active' : ''}`}
+                  className={`${styles.link} ${styles.linkParent} ${active ? styles.active : ''}`}
                   onClick={(e) => {
                     // Di mobile, klik pertama membuka panel alih-alih navigasi.
                     if (
@@ -88,21 +89,21 @@ export default function Navbar() {
                   }}
                 >
                   {item.label}
-                  <Icon name="arrowDown" size={13} className="nav-caret" />
+                  <Icon name="arrowDown" size={13} className={styles.caret} />
                 </Link>
 
-                <div className="nav-dropdown" role="menu">
-                  <div className="nav-dropdown-inner">
+                <div className={styles.dropdown} role="menu">
+                  <div className={styles.dropdownInner}>
                     {children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="nav-drop-link"
+                        className={styles.dropLink}
                         role="menuitem"
                       >
-                        <span className="nav-drop-label">{child.label}</span>
+                        <span className={styles.dropLabel}>{child.label}</span>
                         {child.desc && (
-                          <span className="nav-drop-desc">{child.desc}</span>
+                          <span className={styles.dropDescription}>{child.desc}</span>
                         )}
                       </Link>
                     ))}
@@ -112,29 +113,29 @@ export default function Navbar() {
             );
           })}
 
-          <div className="nav-actions">
+          <div className={styles.actions}>
             <LangToggle />
             <ThemeToggle />
             <CartButton />
             <Link
               href={customer ? '/dashboard' : '/login'}
-              className="nav-cta"
+              className={styles.cta}
             >
               {customer ? customer.name.split(' ')[0] : ui.login}
             </Link>
           </div>
         </nav>
 
-        <div className="nav-mobile-actions">
+        <div className={styles.mobileActions}>
           <Link
             href={customer ? '/dashboard' : '/login'}
-            className="nav-mobile-login"
+            className={styles.mobileLogin}
             onClick={() => setOpen(false)}
           >
             {customer ? customer.name.split(' ')[0] : ui.login}
           </Link>
           <button
-            className="nav-toggle"
+            className={styles.toggle}
             aria-label={open ? 'Tutup menu' : ui.menu}
             aria-expanded={open}
             aria-controls="main-navigation"

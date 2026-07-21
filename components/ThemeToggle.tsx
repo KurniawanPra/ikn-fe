@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Icon from './Icon';
+import styles from '@/components/Navbar.module.css';
 
 // Toggle tema terang/gelap. Menyimpan pilihan di localStorage
 // dan menyetel atribut data-theme pada <html>.
@@ -30,7 +31,7 @@ export default function ThemeToggle() {
 
   return (
     <button
-      className="nav-theme"
+      className={styles.theme}
       onClick={toggle}
       aria-label={isDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'}
       title={isDark ? 'Mode terang' : 'Mode gelap'}
