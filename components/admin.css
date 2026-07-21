@@ -40,7 +40,27 @@
 .admin-brand span { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
 .admin-nav { display: flex; flex-direction: column; gap: 20px; flex: 1; }
 .admin-nav-group { display: flex; flex-direction: column; gap: 2px; }
-.admin-nav-title { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding: 0 10px 6px; opacity: 0.8; }
+.admin-nav-title { display: block; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding: 0 10px 6px; opacity: 0.8; }
+.admin-nav-title-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; background: none; border: none; cursor: pointer;
+  padding: 4px 10px 8px; font-family: var(--font-mono); font-size: 0.66rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+  opacity: 0.8; transition: opacity 0.2s var(--ease), color 0.2s var(--ease);
+}
+.admin-nav-title-btn:hover { opacity: 1; color: var(--ink); }
+.admin-nav-caret { transition: transform 0.3s var(--ease); opacity: 0.6; }
+.admin-nav-group.is-expanded .admin-nav-caret { transform: rotate(90deg); }
+
+.admin-nav-items {
+  display: flex; flex-direction: column; gap: 2px;
+  max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+  transition: max-height 0.35s var(--ease), opacity 0.3s var(--ease), visibility 0.35s var(--ease);
+}
+.admin-nav-group.is-expanded .admin-nav-items {
+  max-height: 2000px; opacity: 1; visibility: visible;
+}
+
 .admin-nav-link {
   display: flex; align-items: center; gap: 11px;
   padding: 9px 10px; border-radius: 9px;
@@ -53,9 +73,11 @@
 .admin-logout {
   display: flex; align-items: center; gap: 10px;
   padding: 11px 12px; margin-top: 16px;
-  border-top: 1px solid var(--line);
+  background: none; border: none; border-top: 1px solid var(--line);
+  cursor: pointer; width: 100%;
   color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.78rem;
   letter-spacing: 0.06em; text-transform: uppercase;
+  transition: color 0.2s var(--ease);
 }
 .admin-logout:hover { color: #b23c32; }
 .admin-logout svg { transform: rotate(180deg); }
@@ -64,9 +86,13 @@
 .admin.is-collapsed .admin-side { padding-inline: 14px; }
 .admin.is-collapsed .admin-brand div,
 .admin.is-collapsed .admin-nav-title,
+.admin.is-collapsed .admin-nav-title-btn,
 .admin.is-collapsed .admin-nav-link span,
 .admin.is-collapsed .admin-logout span {
   display: none;
+}
+.admin.is-collapsed .admin-nav-items {
+  max-height: 2000px; opacity: 1; visibility: visible;
 }
 .admin.is-collapsed .admin-brand,
 .admin.is-collapsed .admin-nav-link,
@@ -179,4 +205,12 @@
 }
 @media (max-width: 560px) {
   .admin-form-row { grid-template-columns: 1fr; }
+}
+
+/* ---------- Meta user pada topbar admin ---------- */
+.admin-user-meta { display: flex; flex-direction: column; line-height: 1.15; }
+.admin-user-meta strong { font-size: 0.86rem; font-weight: 600; }
+.admin-user-meta small { font-size: 0.72rem; color: var(--ink-soft); font-family: var(--font-mono); }
+@media (max-width: 620px) {
+  .admin-user-meta { display: none; }
 }

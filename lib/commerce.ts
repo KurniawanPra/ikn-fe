@@ -176,14 +176,14 @@ export const orders = [
   },
 ];
 
-export function getOrder(number) {
+export function getOrder(number: string) {
   return orders.find((o) => o.number === number) || null;
 }
 
-export function bankById(id) {
+export function bankById(id: string) {
   return bankAccounts.find((b) => b.id === id) || null;
 }
 
-export function shippingById(id) {
+export function shippingById(id: string) {
   return shippingMethods.find((s) => s.id === id) || null;
 }

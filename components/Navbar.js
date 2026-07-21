@@ -8,6 +8,7 @@ import ThemeToggle from '@/components/ThemeToggle';
 import LangToggle from '@/components/LangToggle';
 import CartButton from '@/components/CartButton';
 import { useLang } from '@/components/LanguageProvider';
+import { useAuth } from '@/components/AuthProvider';
 import { navTree, t } from '@/lib/i18n';
 import Icon from '@/components/Icon';
 
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [openGroup, setOpenGroup] = useState(null); // dropdown terbuka di mobile
   const pathname = usePathname();
   const { lang } = useLang();
+  const { customer } = useAuth();
 
   const items = navTree[lang] || navTree.id;
   const ui = t[lang] || t.id;
@@ -113,8 +115,11 @@ export default function Navbar() {
           <LangToggle />
           <ThemeToggle />
           <CartButton />
-          <Link href="/login" className="nav-cta">
-            {ui.login}
+          <Link
+            href={customer ? '/akun' : '/login'}
+            className="nav-cta"
+          >
+            {customer ? customer.name.split(' ')[0] : ui.login}
           </Link>
         </div>
 

@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/Icon';
+import { useAuth } from '@/components/AuthProvider';
 
 const links = [
   { href: '/akun', label: 'Ringkasan', icon: 'target', exact: true },
@@ -12,6 +13,14 @@ const links = [
 
 export default function AccountNav() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { logoutCustomer } = useAuth();
+
+  function handleLogout() {
+    logoutCustomer();
+    router.replace('/login');
+  }
+
   return (
     <nav className="acct-nav" aria-label="Menu akun">
       {links.map((l) => {
@@ -22,9 +31,9 @@ export default function AccountNav() {
           </Link>
         );
       })}
-      <Link href="/login" className="acct-nav-link acct-nav-out">
+      <button type="button" className="acct-nav-link acct-nav-out" onClick={handleLogout}>
         <Icon name="arrow" size={17} /> Keluar
-      </Link>
+      </button>
     </nav>
   );
 }

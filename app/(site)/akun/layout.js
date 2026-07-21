@@ -1,5 +1,6 @@
 import Breadcrumb from '@/components/Breadcrumb';
 import AccountNav from '@/components/AccountNav';
+import AccountGuard from '@/components/AccountGuard';
 
 export const metadata = {
   title: { default: 'Akun Saya', template: '%s · Akun · PT IKN' },
@@ -7,7 +8,7 @@ export const metadata = {
 
 export default function AccountLayout({ children }) {
   return (
-    <>
+    <AccountGuard>
       <section className="pagehead commerce-head">
         <div className="container">
           <Breadcrumb items={[{ label: 'Beranda', href: '/' }, { label: 'Akun' }]} />
@@ -25,6 +26,6 @@ export default function AccountLayout({ children }) {
           </div>
         </div>
       </section>
-    </>
+    </AccountGuard>
   );
 }

@@ -50,11 +50,12 @@ const groups = [
 ];
 
 export default function AdminShell({ children }) {
-  const pathname = usePathname();
   const router = useRouter();
-  const { admin, ready, logoutAdmin } = useAuth();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState({});
+  const { admin, ready, logoutAdmin } = useAuth();
 
   const isLoginPage = pathname === '/admin/login';
 
@@ -101,28 +102,47 @@ export default function AdminShell({ children }) {
         </div>
 
         <nav className="admin-nav" aria-label="Navigasi admin">
-          {groups.map((g) => (
-            <div key={g.title} className="admin-nav-group">
-              <span className="admin-nav-title">{g.title}</span>
-              {g.items.map((it) => {
-                const active =
-                  it.href === '/admin'
-                    ? pathname === '/admin'
-                    : pathname.startsWith(it.href);
-                return (
-                  <Link
-                    key={it.href}
-                    href={it.href}
-                    className={`admin-nav-link ${active ? 'is-active' : ''}`}
-                    onClick={() => setOpen(false)}
+          {groups.map((g) => {
+            const isCollapsible = g.title !== 'Utama';
+            const isExpanded = !isCollapsible || expandedGroups[g.title];
+            
+            return (
+              <div key={g.title} className={`admin-nav-group ${isExpanded ? 'is-expanded' : ''}`}>
+                {isCollapsible ? (
+                  <button 
+                    type="button" 
+                    className="admin-nav-title-btn"
+                    onClick={() => setExpandedGroups(prev => ({ ...prev, [g.title]: !prev[g.title] }))}
                   >
-                    <Icon name={it.icon} size={17} />
-                    <span>{it.label}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          ))}
+                    <span>{g.title}</span>
+                    <Icon name="arrow" size={10} className="admin-nav-caret" />
+                  </button>
+                ) : (
+                  <span className="admin-nav-title">{g.title}</span>
+                )}
+                
+                <div className="admin-nav-items">
+                  {g.items.map((it) => {
+                    const active =
+                      it.href === '/admin'
+                        ? pathname === '/admin'
+                        : pathname.startsWith(it.href);
+                    return (
+                      <Link
+                        key={it.href}
+                        href={it.href}
+                        className={`admin-nav-link ${active ? 'is-active' : ''}`}
+                        onClick={() => setOpen(false)}
+                      >
+                        <Icon name={it.icon} size={17} />
+                        <span>{it.label}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </nav>
 
         <button type="button" className="admin-logout" onClick={handleLogout}>
