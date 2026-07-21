@@ -150,8 +150,11 @@ export default function AdminShell({ children }) {
             <ThemeToggle />
             <Link href="/" className="admin-top-link">Lihat situs</Link>
             <span className="admin-user">
-              <span className="admin-user-avatar">SA</span>
-              Super Admin
+              <span className="admin-user-avatar">{initials}</span>
+              <span className="admin-user-meta">
+                <strong>{admin.name}</strong>
+                <small>{roleLabels[admin.role]}</small>
+              </span>
             </span>
           </div>
         </header>
