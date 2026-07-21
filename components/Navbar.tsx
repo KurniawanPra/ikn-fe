@@ -46,7 +46,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="nav-links" aria-label="Navigasi utama">
+        <nav id="main-navigation" className="nav-links" aria-label="Navigasi utama">
           {items.map((item) => {
             const itemPath = item.href.split('#')[0] ?? item.href;
             const children = item.children ?? [];
@@ -111,29 +111,39 @@ export default function Navbar() {
               </div>
             );
           })}
+
+          <div className="nav-actions">
+            <LangToggle />
+            <ThemeToggle />
+            <CartButton />
+            <Link
+              href={customer ? '/dashboard' : '/login'}
+              className="nav-cta"
+            >
+              {customer ? customer.name.split(' ')[0] : ui.login}
+            </Link>
+          </div>
         </nav>
 
-        <div className="nav-actions">
-          <LangToggle />
-          <ThemeToggle />
-          <CartButton />
+        <div className="nav-mobile-actions">
           <Link
             href={customer ? '/dashboard' : '/login'}
-            className="nav-cta"
+            className="nav-mobile-login"
+            onClick={() => setOpen(false)}
           >
             {customer ? customer.name.split(' ')[0] : ui.login}
           </Link>
+          <button
+            className="nav-toggle"
+            aria-label={open ? 'Tutup menu' : ui.menu}
+            aria-expanded={open}
+            aria-controls="main-navigation"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span />
+            <span />
+          </button>
         </div>
-
-        <button
-          className="nav-toggle"
-          aria-label={ui.menu}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span />
-          <span />
-        </button>
       </div>
     </header>
   );

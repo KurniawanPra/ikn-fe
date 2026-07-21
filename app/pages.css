@@ -859,6 +859,29 @@
   color: var(--green);
   border-bottom: 1px solid var(--green);
 }
+.auth-role-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin-bottom: 24px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--paper-2);
+}
+.auth-role-switch a {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-align: center;
+}
+.auth-role-switch a.is-active {
+  background: var(--surface);
+  color: var(--green);
+  box-shadow: 2px 2px 6px var(--neu-dark), -2px -2px 6px var(--neu-light);
+}
 
 @media (max-width: 780px) {
   .contact-grid { grid-template-columns: 1fr; }

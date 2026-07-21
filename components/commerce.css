@@ -426,8 +426,53 @@
 }
 
 @media print {
-  .nav, .footer, .acct-side, .pagehead, .no-print { display: none !important; }
-  .acct-layout, .acct-detail-grid { display: block; }
+  .nav, .footer, .acct-side, .pagehead, .customer-side, .customer-topbar, .no-print { display: none !important; }
+  .acct-layout, .acct-detail-grid, .customer-portal { display: block; }
+  .customer-content { max-width: none; padding: 0; }
   .acct-detail-main > :not(.invoice), .acct-detail-side { display: none !important; }
   .invoice { border: 0; padding: 0; }
+}
+
+/* ==================== CUSTOMER PORTAL SHELL ==================== */
+.customer-portal { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; background: var(--paper); }
+.customer-side { position: sticky; top: 0; align-self: start; height: 100vh; display: flex; flex-direction: column; padding: 22px 16px; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--line); }
+.customer-brand { display: flex; align-items: center; gap: 12px; padding: 4px 8px 22px; border-bottom: 1px solid var(--line); }
+.customer-brand strong, .customer-brand small { display: block; }
+.customer-brand small { margin-top: 2px; color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.customer-identity { display: flex; align-items: center; gap: 11px; margin: 18px 8px 12px; padding: 14px; border-radius: 12px; background: var(--paper-2); min-width: 0; }
+.customer-identity > span:last-child { min-width: 0; }
+.customer-identity strong, .customer-identity small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.customer-identity strong { font-size: 0.86rem; }
+.customer-identity small { margin-top: 3px; color: var(--ink-soft); font-size: 0.7rem; }
+.customer-avatar { width: 36px; height: 36px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: #fff; font-family: var(--font-mono); font-size: 0.72rem; }
+.customer-side .acct-nav { flex: 1; padding-top: 8px; }
+.customer-side .acct-nav-out { margin-top: auto; }
+.customer-main { min-width: 0; display: flex; flex-direction: column; }
+.customer-topbar { position: sticky; top: 0; z-index: 30; min-height: 70px; display: flex; align-items: center; gap: 16px; padding: 12px clamp(18px, 3vw, 34px); background: var(--neu-bg-strong); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.customer-page-title { display: flex; flex-direction: column; line-height: 1.25; }
+.customer-page-title small { color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.customer-page-title strong { font-size: 1rem; }
+.customer-top-actions { display: flex; align-items: center; gap: 15px; margin-left: auto; }
+.customer-site-link { color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.74rem; }
+.customer-site-link:hover { color: var(--green); }
+.customer-top-user { display: flex; align-items: center; gap: 9px; font-size: 0.84rem; }
+.customer-avatar-sm { width: 30px; height: 30px; font-size: 0.66rem; }
+.customer-content { width: 100%; max-width: 1400px; margin: 0 auto; padding: clamp(20px, 3vw, 38px); }
+.customer-burger { display: none; flex-direction: column; gap: 4px; padding: 6px; border: 0; background: transparent; cursor: pointer; }
+.customer-burger span { display: block; width: 22px; height: 2px; background: var(--ink); }
+.customer-scrim { display: none; }
+
+@media (max-width: 1000px) {
+  .customer-portal { grid-template-columns: 1fr; }
+  .customer-side { position: fixed; inset: 0 auto 0 0; z-index: 70; width: min(280px, 86vw); transform: translateX(-100%); transition: transform 0.3s var(--ease); }
+  .customer-portal.is-open .customer-side { transform: none; }
+  .customer-burger { display: flex; }
+  .customer-portal.is-open .customer-scrim { position: fixed; inset: 0; z-index: 60; display: block; border: 0; background: rgba(0, 0, 0, 0.42); }
+}
+
+@media (max-width: 620px) {
+  .customer-topbar { gap: 10px; padding-inline: 14px; }
+  .customer-top-user strong, .customer-site-link { display: none; }
+  .customer-top-actions { gap: 8px; }
+  .customer-content { padding: 18px 14px 28px; }
 }

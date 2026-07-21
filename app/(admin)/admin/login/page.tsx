@@ -4,6 +4,7 @@ import { Suspense, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import Icon from '@/components/Icon';
 import { useAuth } from '@/components/AuthProvider';
 import { adminCredentials } from '@/lib/auth';
@@ -32,10 +33,14 @@ function AdminLoginForm() {
 
   return (
     <div className="admin-auth-card">
+      <nav className="auth-role-switch" aria-label="Pilih jenis login">
+        <Link href="/login">Login Customer</Link>
+        <Link href="/admin/login" className="is-active" aria-current="page">Login Admin</Link>
+      </nav>
       <div className="admin-auth-brand">
         <Image src="/img/rubin-logo.png" alt="PT IKN" width={40} height={40} />
         <div>
-          <strong>PT IKN Back-office</strong>
+          <strong>Login Admin PT IKN</strong>
           <span>Masuk untuk mengelola situs & transaksi</span>
         </div>
       </div>
@@ -65,7 +70,7 @@ function AdminLoginForm() {
           </div>
         </div>
         <button type="submit" className="btn btn-solid btn-block">
-          Masuk <Icon name="arrow" />
+          Masuk sebagai Admin <Icon name="arrow" />
         </button>
 
         <div className="auth-demo">

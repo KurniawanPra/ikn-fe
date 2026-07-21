@@ -73,7 +73,7 @@ function LoginForm() {
         </span>
       </label>
       <button type="submit" className="btn btn-solid">
-        Masuk <Icon name="arrow" />
+        Masuk sebagai Customer <Icon name="arrow" />
       </button>
 
       <div className="auth-demo">
@@ -104,8 +104,8 @@ export default function Login() {
       <section className="pagehead">
         <div className="container pagehead-row">
           <div>
-            <span className="label label-amber">/ Akun — Login</span>
-            <h1 className="display pagehead-title">Masuk ke akun.</h1>
+            <span className="label label-amber">/ Portal Customer</span>
+            <h1 className="display pagehead-title">Login Customer.</h1>
           </div>
           <p className="lead">
             Masuk untuk mengakses portal mitra, dokumen produk, dan status
@@ -117,6 +117,10 @@ export default function Login() {
       <section className="section-tight">
         <div className="container">
           <div className="auth-wrap">
+            <nav className="auth-role-switch" aria-label="Pilih jenis login">
+              <Link href="/login" className="is-active" aria-current="page">Login Customer</Link>
+              <Link href="/admin/login">Login Admin</Link>
+            </nav>
             <Suspense fallback={<p className="form-note">Memuat…</p>}>
               <LoginForm />
             </Suspense>
