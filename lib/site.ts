@@ -1,4 +1,12 @@
 // Sumber tunggal data perusahaan — dipakai lintas halaman.
+import type { IconName } from '@/lib/types';
+
+export interface Video {
+  id: string;
+  title: string;
+  desc: string;
+}
+
 export const company = {
   name: 'PT Industri Karet Nusantara',
   short: 'PT IKN',
@@ -65,7 +73,7 @@ export const products = [
   },
 ];
 
-export const capabilities = [
+export const capabilities: { icon: IconName; title: string; body: string }[] = [
   {
     icon: 'leaf',
     title: 'Bahan baku lokal',
@@ -91,7 +99,7 @@ export const misi = [
   'Memanfaatkan dan mengembangkan teknologi dalam proses bisnis.',
 ];
 
-export const akhlak = [
+export const akhlak: [string, string][] = [
   ['Amanah', 'Memegang teguh kepercayaan yang diberikan.'],
   ['Kompeten', 'Terus belajar dan mengembangkan kapabilitas.'],
   ['Harmonis', 'Saling peduli dan menghargai perbedaan.'],
@@ -146,7 +154,7 @@ export const news = [
   },
 ];
 
-export const sustainability = [
+export const sustainability: { id: string; icon: IconName; title: string; body: string; points: string[] }[] = [
   {
     id: 'lingkungan',
     icon: 'leaf',
@@ -183,7 +191,7 @@ export const sustainability = [
 ];
 
 // Galeri video (YouTube) — id diambil dari URL youtu.be
-export const videos = [
+export const videos: Video[] = [
   {
     id: 'FGJQW6l2hrk',
     title: 'Company Profile — PT Industri Karet Nusantara',

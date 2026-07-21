@@ -74,6 +74,17 @@ export interface Product {
   solubility?: string[][];
 }
 
+// Item keranjang (subset Product + qty).
+export interface CartItem {
+  slug: string;
+  name: string;
+  code: string;
+  price: number | null;
+  unit: string;
+  image: string;
+  qty: number;
+}
+
 export interface Review {
   id: string;
   product: string;
@@ -139,6 +150,7 @@ export interface Order {
   trackingNo: string | null;
   proofUploaded?: boolean;
   reviewed?: boolean;
+  dueAt?: string;
   timeline: OrderTimelineEntry[];
 }
 
@@ -194,7 +206,8 @@ export interface Customer {
   joined: string;
 }
 
-export type Role = 'super_admin' | 'admin';
+// Pengunjung publik adalah viewer tanpa sesi, bukan role ketiga.
+export type Role = 'admin' | 'customer';
 
 export interface AdminUser {
   id: string;

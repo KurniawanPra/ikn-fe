@@ -1,8 +1,7 @@
 'use client';
 
-// Provider auth tiruan (dummy). Menyimpan sesi Customer & Admin secara
-// TERPISAH di localStorage — sesuai PRD, sesi keduanya tidak boleh bercampur.
-// Belum terhubung backend; hanya untuk prototipe frontend.
+// Provider auth tiruan (dummy). Hanya satu sesi aktif: admin atau customer.
+// Jika tidak ada sesi, pengguna tetap dapat mengakses situs sebagai viewer.
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
@@ -14,8 +13,7 @@ import {
   type AdminAccount,
 } from '@/lib/auth';
 
-const CUSTOMER_KEY = 'ikn_customer_session';
-const ADMIN_KEY = 'ikn_admin_session';
+const SESSION_KEY = 'ikn_auth_session_v2';
 
 interface AuthContextValue {
   customer: CustomerAccount | null;
@@ -29,32 +27,49 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-function read<T extends Account>(key: string): T | null {
+function isAccount(value: unknown): value is Account {
+  if (!value || typeof value !== 'object') return false;
+  const account = value as Record<string, unknown>;
+  const baseIsValid =
+    typeof account.id === 'string' &&
+    typeof account.name === 'string' &&
+    typeof account.email === 'string';
+
+  if (!baseIsValid) return false;
+  if (account.role === 'admin') return true;
+  return account.role === 'customer' && typeof account.company === 'string';
+}
+
+function readSession(): Account | null {
   try {
-    const raw = localStorage.getItem(key);
-    return raw ? (JSON.parse(raw) as T) : null;
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    return isAccount(parsed) ? parsed : null;
   } catch {
     return null;
   }
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [customer, setCustomer] = useState<CustomerAccount | null>(null);
-  const [admin, setAdmin] = useState<AdminAccount | null>(null);
+  const [account, setAccount] = useState<Account | null>(null);
   const [ready, setReady] = useState(false);
+  const customer: CustomerAccount | null = account?.role === 'customer' ? account : null;
+  const admin: AdminAccount | null = account?.role === 'admin' ? account : null;
 
   useEffect(() => {
-    setCustomer(read<CustomerAccount>(CUSTOMER_KEY));
-    setAdmin(read<AdminAccount>(ADMIN_KEY));
+    setAccount(readSession());
+    localStorage.removeItem('ikn_customer_session');
+    localStorage.removeItem('ikn_admin_session');
     setReady(true);
   }, []);
 
   function loginCustomer(email: string, password: string): CustomerAccount | null {
     const acc = verifyCustomer(email, password);
     if (acc) {
-      setCustomer(acc);
+      setAccount(acc);
       try {
-        localStorage.setItem(CUSTOMER_KEY, JSON.stringify(acc));
+        localStorage.setItem(SESSION_KEY, JSON.stringify(acc));
       } catch {}
     }
     return acc;
@@ -63,25 +78,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   function loginAdmin(email: string, password: string): AdminAccount | null {
     const acc = verifyAdmin(email, password);
     if (acc) {
-      setAdmin(acc);
+      setAccount(acc);
       try {
-        localStorage.setItem(ADMIN_KEY, JSON.stringify(acc));
+        localStorage.setItem(SESSION_KEY, JSON.stringify(acc));
       } catch {}
     }
     return acc;
   }
 
   function logoutCustomer() {
-    setCustomer(null);
+    if (account?.role !== 'customer') return;
+    setAccount(null);
     try {
-      localStorage.removeItem(CUSTOMER_KEY);
+      localStorage.removeItem(SESSION_KEY);
     } catch {}
   }
 
   function logoutAdmin() {
-    setAdmin(null);
+    if (account?.role !== 'admin') return;
+    setAccount(null);
     try {
-      localStorage.removeItem(ADMIN_KEY);
+      localStorage.removeItem(SESSION_KEY);
     } catch {}
   }
 

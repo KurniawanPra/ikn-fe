@@ -1,14 +1,10 @@
 // ============================ AUTH (DUMMY) ============================
 // Kredensial & sesi tiruan untuk demo. BELUM terhubung backend — password
-// disimpan plaintext hanya untuk keperluan prototipe frontend. Sesi Customer
-// dan Admin dipisah (sesuai PRD: Customer tidak boleh mengakses /admin).
-
-import type { Role } from '@/lib/types';
-
-export type AccountKind = 'customer' | 'admin';
+// disimpan plaintext hanya untuk prototipe. Satu browser hanya memiliki satu
+// sesi aktif dengan role admin atau customer.
 
 export interface CustomerAccount {
-  kind: 'customer';
+  role: 'customer';
   id: string;
   name: string;
   email: string;
@@ -16,11 +12,10 @@ export interface CustomerAccount {
 }
 
 export interface AdminAccount {
-  kind: 'admin';
+  role: 'admin';
   id: string;
   name: string;
   email: string;
-  role: Role;
 }
 
 export type Account = CustomerAccount | AdminAccount;
@@ -35,7 +30,7 @@ interface AdminCredential extends AdminAccount {
 
 export const customerCredentials: CustomerCredential[] = [
   {
-    kind: 'customer',
+    role: 'customer',
     id: 'c1',
     name: 'Andi Wijaya',
     email: 'buyer@coatingsolutions.co.id',
@@ -43,7 +38,7 @@ export const customerCredentials: CustomerCredential[] = [
     password: 'password',
   },
   {
-    kind: 'customer',
+    role: 'customer',
     id: 'c2',
     name: 'Sari Dewi',
     email: 'po@maritimwarna.com',
@@ -54,19 +49,10 @@ export const customerCredentials: CustomerCredential[] = [
 
 export const adminCredentials: AdminCredential[] = [
   {
-    kind: 'admin',
-    id: 'u1',
-    name: 'Super Admin',
-    email: 'superadmin@ptikn.com',
-    role: 'super_admin',
-    password: 'password',
-  },
-  {
-    kind: 'admin',
-    id: 'u2',
-    name: 'Admin Katalog',
-    email: 'katalog@ptikn.com',
     role: 'admin',
+    id: 'u1',
+    name: 'Admin PT IKN',
+    email: 'admin@ptikn.com',
     password: 'password',
   },
 ];

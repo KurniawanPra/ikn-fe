@@ -3,16 +3,39 @@
 // Kamus ini menampung teks "chrome" situs (navbar, dropdown, hero, footer, CTA)
 // plus struktur navigasi bertingkat (mega-dropdown) yang dipakai Navbar.
 
-export const languages = [
+import type { Lang } from '@/lib/types';
+
+export interface NavChild {
+  label: string;
+  href: string;
+  desc?: string;
+}
+
+export interface NavNode {
+  label: string;
+  href: string;
+  children?: NavChild[];
+}
+
+export interface UIStrings {
+  login: string;
+  themeDark: string;
+  themeLight: string;
+  menu: string;
+  heroTitle: string[];
+  heroSub: string;
+}
+
+export const languages: { code: Lang; label: string; name: string }[] = [
   { code: 'id', label: 'ID', name: 'Indonesia' },
   { code: 'en', label: 'EN', name: 'English' },
 ];
 
-export const defaultLang = 'id';
+export const defaultLang: Lang = 'id';
 
 // Struktur navigasi dengan dropdown.
 // `children` -> tampil sebagai panel hover. `desc` -> subteks kecil di dropdown.
-export const navTree = {
+export const navTree: Record<Lang, NavNode[]> = {
   id: [
     { label: 'Beranda', href: '/' },
     {
@@ -102,7 +125,7 @@ export const navTree = {
 };
 
 // Teks UI umum.
-export const t = {
+export const t: Record<Lang, UIStrings> = {
   id: {
     login: 'Login',
     themeDark: 'Mode gelap',

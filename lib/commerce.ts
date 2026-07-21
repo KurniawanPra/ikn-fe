@@ -2,8 +2,18 @@
 // Status order & pembayaran (sesuai PRD §16), rekening bank, biaya tambahan,
 // dan contoh order untuk halaman customer & admin. Semua data mock.
 
+import type {
+  AdditionalFee,
+  BankAccount,
+  Order,
+  OrderStatusKey,
+  PaymentStatusKey,
+  ShippingMethod,
+  StatusLabel,
+} from '@/lib/types';
+
 // ---- Status order ----
-export const orderStatus = {
+export const orderStatus: Record<OrderStatusKey, StatusLabel> = {
   awaiting_payment: { id: 'Menunggu Pembayaran', en: 'Awaiting Payment', tone: 'warn' },
   awaiting_verification: { id: 'Menunggu Verifikasi', en: 'Awaiting Verification', tone: 'warn' },
   processing: { id: 'Diproses', en: 'Processing', tone: 'info' },
@@ -15,7 +25,7 @@ export const orderStatus = {
 };
 
 // ---- Status pembayaran ----
-export const paymentStatus = {
+export const paymentStatus: Record<PaymentStatusKey, StatusLabel> = {
   unpaid: { id: 'Belum Dibayar', en: 'Unpaid', tone: 'warn' },
   awaiting_confirmation: { id: 'Menunggu Konfirmasi', en: 'Awaiting Confirmation', tone: 'warn' },
   paid: { id: 'Dibayar', en: 'Paid', tone: 'ok' },
@@ -24,7 +34,7 @@ export const paymentStatus = {
 };
 
 // Urutan tahap untuk stepper tracking
-export const trackingSteps = [
+export const trackingSteps: OrderStatusKey[] = [
   'awaiting_payment',
   'awaiting_verification',
   'processing',
@@ -35,28 +45,28 @@ export const trackingSteps = [
 ];
 
 // ---- Rekening bank tujuan (mock — dikonfigurasi Admin) ----
-export const bankAccounts = [
+export const bankAccounts: BankAccount[] = [
   { id: 'bca', bank: 'Bank BCA', number: '0123456789', holder: 'PT Industri Karet Nusantara', active: true },
   { id: 'mandiri', bank: 'Bank Mandiri', number: '1060099887766', holder: 'PT Industri Karet Nusantara', active: true },
   { id: 'bni', bank: 'Bank BNI', number: '0987654321', holder: 'PT Industri Karet Nusantara', active: false },
 ];
 
 // ---- Biaya tambahan (mock) ----
-export const additionalFees = [
+export const additionalFees: AdditionalFee[] = [
   { id: 'ship-medan', label: 'Ongkir Medan & sekitar', type: 'shipping', amount: 25000, active: true },
   { id: 'ship-sumut', label: 'Ongkir Sumatera Utara', type: 'shipping', amount: 55000, active: true },
   { id: 'ship-luar', label: 'Ongkir luar Sumatera', type: 'shipping', amount: 150000, active: true },
   { id: 'admin-fee', label: 'Biaya administrasi', type: 'admin', amount: 5000, active: true },
 ];
 
-export const shippingMethods = [
+export const shippingMethods: ShippingMethod[] = [
   { id: 'ship-medan', label: 'Reguler Medan (1–2 hari)', amount: 25000 },
   { id: 'ship-sumut', label: 'Reguler Sumatera Utara (2–4 hari)', amount: 55000 },
   { id: 'ship-luar', label: 'Kargo luar Sumatera (4–9 hari)', amount: 150000 },
 ];
 
 // ---- Contoh order (mock) untuk history & admin ----
-export const orders = [
+export const orders: Order[] = [
   {
     number: 'IKN-20260710-00042',
     date: '2026-07-10T09:24:00',
