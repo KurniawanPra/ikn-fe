@@ -5,6 +5,9 @@ import Icon from '@/components/Icon';
 import EmptyState from '@/components/EmptyState';
 import StatusBadge from '@/components/StatusBadge';
 import { useAuth } from '@/components/AuthProvider';
+import { useTransactions } from '@/components/TransactionProvider';
+import { useLang } from '@/components/LanguageProvider';
+import { t } from '@/lib/i18n';
 import {
   getCustomerDashboardStats,
   getOrdersByCustomer,
@@ -13,19 +16,25 @@ import {
 import { formatDate, formatIDR } from '@/lib/format';
 import type { IconName } from '@/lib/types';
 
-const quickActions: { href: string; label: string; body: string; icon: IconName }[] = [
-  { href: '/catalog', label: 'Buka katalog', body: 'Cari produk dan mulai pemesanan.', icon: 'flask' },
-  { href: '/dashboard/pesanan', label: 'Pesanan saya', body: 'Lihat pembayaran dan pengiriman.', icon: 'drop' },
-  { href: '/dashboard/alamat', label: 'Kelola alamat', body: 'Atur tujuan pengiriman utama.', icon: 'pin' },
-  { href: '/dashboard/profil', label: 'Perbarui profil', body: 'Pastikan data PIC selalu terbaru.', icon: 'handshake' },
-];
-
 export default function CustomerDashboard() {
   const { customer } = useAuth();
+  const { orders } = useTransactions();
+  const { lang } = useLang();
+
   if (!customer) return null;
 
-  const customerOrders = getOrdersByCustomer(customer.id);
-  const stats = getCustomerDashboardStats(customer.id);
+  const ui = t[lang] || t.id;
+  const d = ui.dash;
+
+  const quickActions: { href: string; label: string; body: string; icon: IconName }[] = [
+    { href: '/catalog', label: d.quick.catalog, body: d.quick.catalogDesc, icon: 'flask' },
+    { href: '/dashboard/pesanan', label: d.quick.orders, body: d.quick.ordersDesc, icon: 'drop' },
+    { href: '/dashboard/alamat', label: d.quick.address, body: d.quick.addressDesc, icon: 'pin' },
+    { href: '/dashboard/profil', label: d.quick.profile, body: d.quick.profileDesc, icon: 'handshake' },
+  ];
+
+  const customerOrders = getOrdersByCustomer(customer.id, orders);
+  const stats = getCustomerDashboardStats(customer.id, orders);
   const recent = customerOrders.slice(0, 3);
   const alerts = customerOrders.filter(
     (order) =>
@@ -38,35 +47,35 @@ export default function CustomerDashboard() {
     <div className="customer-dashboard">
       <section className="dash-welcome">
         <div>
-          <span className="label label-amber">Dashboard Customer</span>
-          <h2 className="h2">Selamat datang, {customer.name.split(' ')[0]}.</h2>
-          <p>{customer.company} · Semua aktivitas akun Anda tersedia di satu tempat.</p>
+          <span className="label label-amber">{d.title}</span>
+          <h2 className="h2">{d.welcome} {customer.name.split(' ')[0]}.</h2>
+          <p>{customer.company} · {d.subtitle}</p>
         </div>
         <Link href="/catalog" className="btn btn-solid">
-          Belanja produk <Icon name="arrow" />
+          {d.shop} <Icon name="arrow" />
         </Link>
       </section>
 
       <section className="acct-stats" aria-label="Ringkasan pesanan">
-        <div className="acct-stat"><span className="acct-stat-val">{stats.totalOrders}</span><span className="acct-stat-label">Total pesanan</span></div>
-        <div className="acct-stat"><span className="acct-stat-val">{stats.awaitingPayment}</span><span className="acct-stat-label">Perlu pembayaran</span></div>
-        <div className="acct-stat"><span className="acct-stat-val">{stats.inProgress}</span><span className="acct-stat-label">Sedang berjalan</span></div>
-        <div className="acct-stat"><span className="acct-stat-val">{stats.completed}</span><span className="acct-stat-label">Selesai</span></div>
-        <div className="acct-stat acct-stat-wide"><span className="acct-stat-val">{formatIDR(stats.transactionValue)}</span><span className="acct-stat-label">Nilai transaksi</span></div>
+        <div className="acct-stat"><span className="acct-stat-val">{stats.totalOrders}</span><span className="acct-stat-label">{d.stats.total}</span></div>
+        <div className="acct-stat"><span className="acct-stat-val">{stats.awaitingPayment}</span><span className="acct-stat-label">{d.stats.unpaid}</span></div>
+        <div className="acct-stat"><span className="acct-stat-val">{stats.inProgress}</span><span className="acct-stat-label">{d.stats.inProgress}</span></div>
+        <div className="acct-stat"><span className="acct-stat-val">{stats.completed}</span><span className="acct-stat-label">{d.stats.completed}</span></div>
+        <div className="acct-stat acct-stat-wide"><span className="acct-stat-val">{formatIDR(stats.transactionValue)}</span><span className="acct-stat-label">{d.stats.value}</span></div>
       </section>
 
       {alerts.length > 0 && (
         <section className="dash-alerts" aria-labelledby="customer-alert-title">
           <div className="acct-section-head">
-            <h2 id="customer-alert-title" className="h3">Perlu perhatian</h2>
+            <h2 id="customer-alert-title" className="h3">{d.alerts.title}</h2>
           </div>
           {alerts.map((order) => {
             const needsPayment = ['unpaid', 'rejected'].includes(order.payment);
             const message = needsPayment
-              ? `Pembayaran ${order.number} perlu diselesaikan atau diperbarui.`
+              ? d.alerts.unpaid.replace('{num}', order.number)
               : order.status === 'shipped'
-                ? `Pesanan ${order.number} sedang dikirim${order.trackingNo ? ` dengan resi ${order.trackingNo}` : ''}.`
-                : `Pesanan ${order.number} sudah selesai dan dapat diulas.`;
+                ? d.alerts.shipped.replace('{num}', order.number) + (order.trackingNo ? ` (${order.trackingNo})` : '')
+                : d.alerts.reviewed.replace('{num}', order.number);
             return (
               <Link key={order.number} href={`/dashboard/pesanan/${order.number}`} className="dash-alert">
                 <Icon name={needsPayment ? 'drop' : order.status === 'shipped' ? 'compass' : 'check'} size={19} />
@@ -80,11 +89,11 @@ export default function CustomerDashboard() {
 
       <section className="dash-block">
         <div className="acct-section-head">
-          <h2 className="h3">Pesanan terbaru</h2>
-          <Link href="/dashboard/pesanan" className="link">Semua pesanan <Icon name="arrow" /></Link>
+          <h2 className="h3">{d.recent.title}</h2>
+          <Link href="/dashboard/pesanan" className="link">{d.recent.all} <Icon name="arrow" /></Link>
         </div>
         {recent.length === 0 ? (
-          <EmptyState title="Belum ada pesanan" body="Pesanan pertama Anda akan tampil di sini." action={{ href: '/catalog', label: 'Lihat katalog' }} />
+          <EmptyState title={d.recent.emptyTitle} body={d.recent.emptyBody} action={{ href: '/catalog', label: d.recent.catalog }} />
         ) : (
           <div className="acct-order-list">
             {recent.map((order) => {
@@ -103,7 +112,7 @@ export default function CustomerDashboard() {
       </section>
 
       <section className="dash-block">
-        <div className="acct-section-head"><h2 className="h3">Akses cepat</h2></div>
+        <div className="acct-section-head"><h2 className="h3">{d.quick.title}</h2></div>
         <div className="dash-quick-grid">
           {quickActions.map((action) => (
             <Link key={action.href} href={action.href} className="dash-quick-card">

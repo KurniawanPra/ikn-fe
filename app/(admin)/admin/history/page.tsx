@@ -23,7 +23,7 @@ export default function AdminHistory() {
             <div key={m.year} className="admin-form-row" style={{ display: 'grid', gridTemplateColumns: '90px 1fr auto', gap: 14, alignItems: 'center', marginBottom: 12 }}>
               <input defaultValue={m.year} className="mono" />
               <input defaultValue={m.text} />
-              <button type="button" className="row-act row-act-danger">Hapus</button>
+              <button type="button" className="row-act row-act-danger">Nonaktifkan</button>
             </div>
           ))}
         </div>

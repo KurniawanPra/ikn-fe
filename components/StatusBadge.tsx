@@ -1,4 +1,5 @@
 import type { Tone } from '@/lib/types';
+import styles from '@/components/StatusBadge.module.css';
 
 // Badge status dengan nada warna (ok/warn/info/bad). Dipakai order, payment, stok.
 interface StatusBadgeProps {
@@ -9,7 +10,7 @@ interface StatusBadgeProps {
 
 export default function StatusBadge({ label, tone = 'info', small = false }: StatusBadgeProps) {
   return (
-    <span className={`badge badge-${tone} ${small ? 'badge-sm' : ''}`}>
+    <span className={`${styles.badge} ${styles[tone]} ${small ? styles.small : ''}`}>
       {label}
     </span>
   );

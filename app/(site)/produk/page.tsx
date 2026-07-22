@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import Icon from '@/components/Icon';
-import { products } from '@/lib/site';
+import { products } from '@/lib/catalog';
 
 export const metadata = {
   title: 'Produk',
@@ -40,14 +40,16 @@ export default function Produk() {
                   <span className="prod-item-kind">{p.kind}</span>
                   <h2 className="prod-item-name">{p.name}</h2>
                   <p className="prod-item-sum">{p.summary}</p>
-                  <div className="spec-table">
-                    {p.specs.map(([k, v]) => (
-                      <div key={k} className="spec-row">
-                        <span className="spec-key">{k}</span>
-                        <span className="spec-val">{v}</span>
-                      </div>
-                    ))}
-                  </div>
+                  {p.specs && p.specs.length > 0 && (
+                    <div className="spec-table">
+                      {p.specs.map(([key, value]) => (
+                        <div key={key} className="spec-row">
+                          <span className="spec-key">{key}</span>
+                          <span className="spec-val">{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </Reveal>
             ))}

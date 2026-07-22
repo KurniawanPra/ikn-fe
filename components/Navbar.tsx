@@ -116,12 +116,12 @@ export default function Navbar() {
           <div className={styles.actions}>
             <LangToggle />
             <ThemeToggle />
-            <CartButton />
+            {customer && <CartButton />}
             <Link
               href={customer ? '/dashboard' : '/login'}
-              className={styles.cta}
+              className={`${styles.cta} ${customer ? styles.ctaDashboard : ''}`}
             >
-              {customer ? customer.name.split(' ')[0] : ui.login}
+              {customer ? 'Dashboard' : ui.login}
             </Link>
           </div>
         </nav>
@@ -129,10 +129,10 @@ export default function Navbar() {
         <div className={styles.mobileActions}>
           <Link
             href={customer ? '/dashboard' : '/login'}
-            className={styles.mobileLogin}
+            className={`${styles.mobileLogin} ${customer ? styles.mobileDashboard : ''}`}
             onClick={() => setOpen(false)}
           >
-            {customer ? customer.name.split(' ')[0] : ui.login}
+            {customer ? 'Dashboard' : ui.login}
           </Link>
           <button
             className={styles.toggle}

@@ -24,6 +24,53 @@ export interface UIStrings {
   menu: string;
   heroTitle: string[];
   heroSub: string;
+  dash: {
+    title: string;
+    welcome: string;
+    subtitle: string;
+    shop: string;
+    stats: {
+      total: string;
+      unpaid: string;
+      inProgress: string;
+      completed: string;
+      value: string;
+    };
+    alerts: {
+      title: string;
+      unpaid: string;
+      shipped: string;
+      reviewed: string;
+    };
+    recent: {
+      title: string;
+      all: string;
+      emptyTitle: string;
+      emptyBody: string;
+      catalog: string;
+    };
+    quick: {
+      title: string;
+      catalog: string;
+      catalogDesc: string;
+      orders: string;
+      ordersDesc: string;
+      address: string;
+      addressDesc: string;
+      profile: string;
+      profileDesc: string;
+    };
+  };
+  navAccount: {
+    shop: string;
+    dashboard: string;
+    orders: string;
+    settings: string;
+    profile: string;
+    company: string;
+    address: string;
+    logout: string;
+  };
 }
 
 export const languages: { code: Lang; label: string; name: string }[] = [
@@ -34,7 +81,6 @@ export const languages: { code: Lang; label: string; name: string }[] = [
 export const defaultLang: Lang = 'id';
 
 // Struktur navigasi dengan dropdown.
-// `children` -> tampil sebagai panel hover. `desc` -> subteks kecil di dropdown.
 export const navTree: Record<Lang, NavNode[]> = {
   id: [
     { label: 'Beranda', href: '/' },
@@ -133,6 +179,26 @@ export const t: Record<Lang, UIStrings> = {
     menu: 'Menu',
     heroTitle: ['Menghadirkan', 'Produk Karet Berkualitas', 'untuk Industri Global'],
     heroSub: 'PT Industri Karet Nusantara adalah perusahaan mapan yang berspesialisasi dalam produk hilir karet.',
+    dash: {
+      title: 'Dashboard Customer',
+      welcome: 'Selamat datang,',
+      subtitle: 'Semua aktivitas akun Anda tersedia di satu tempat.',
+      shop: 'Belanja produk',
+      stats: { total: 'Total pesanan', unpaid: 'Perlu pembayaran', inProgress: 'Sedang berjalan', completed: 'Selesai', value: 'Nilai transaksi' },
+      alerts: { title: 'Perlu perhatian', unpaid: 'Pembayaran {num} perlu diselesaikan atau diperbarui.', shipped: 'Pesanan {num} sedang dikirim.', reviewed: 'Pesanan {num} sudah selesai dan dapat diulas.' },
+      recent: { title: 'Pesanan terbaru', all: 'Semua pesanan', emptyTitle: 'Belum ada pesanan', emptyBody: 'Pesanan pertama Anda akan tampil di sini.', catalog: 'Lihat katalog' },
+      quick: { title: 'Menu Utama', catalog: 'Buka katalog', catalogDesc: 'Cari produk dan mulai pemesanan.', orders: 'Pesanan saya', ordersDesc: 'Lihat pembayaran dan pengiriman.', address: 'Kelola alamat', addressDesc: 'Atur tujuan pengiriman utama.', profile: 'Perbarui profil', profileDesc: 'Pastikan data PIC selalu terbaru.' }
+    },
+    navAccount: {
+      shop: 'Belanja Produk',
+      dashboard: 'Dashboard',
+      orders: 'Pesanan saya',
+      settings: 'Pengaturan',
+      profile: 'Profil saya',
+      company: 'Perusahaan',
+      address: 'Alamat',
+      logout: 'Keluar',
+    }
   },
   en: {
     login: 'Login',
@@ -141,5 +207,25 @@ export const t: Record<Lang, UIStrings> = {
     menu: 'Menu',
     heroTitle: ['Delivering', 'Quality Rubber Products', 'for Global Industries'],
     heroSub: 'PT Industri Karet Nusantara is a well-established company specializing in downstream rubber products.',
+    dash: {
+      title: 'Customer Dashboard',
+      welcome: 'Welcome,',
+      subtitle: 'All your account activities are available in one place.',
+      shop: 'Shop products',
+      stats: { total: 'Total orders', unpaid: 'Awaiting payment', inProgress: 'In progress', completed: 'Completed', value: 'Transaction value' },
+      alerts: { title: 'Needs attention', unpaid: 'Payment for {num} needs to be completed or updated.', shipped: 'Order {num} is being shipped.', reviewed: 'Order {num} is completed and ready for review.' },
+      recent: { title: 'Recent orders', all: 'All orders', emptyTitle: 'No orders yet', emptyBody: 'Your first order will appear here.', catalog: 'View catalog' },
+      quick: { title: 'Main Menu', catalog: 'Open catalog', catalogDesc: 'Find products and start ordering.', orders: 'My orders', ordersDesc: 'View payments and shipments.', address: 'Manage address', addressDesc: 'Set primary shipping destination.', profile: 'Update profile', profileDesc: 'Ensure PIC data is up to date.' }
+    },
+    navAccount: {
+      shop: 'Shop Products',
+      dashboard: 'Dashboard',
+      orders: 'My Orders',
+      settings: 'Settings',
+      profile: 'My Profile',
+      company: 'Company',
+      address: 'Address',
+      logout: 'Logout',
+    }
   },
 };

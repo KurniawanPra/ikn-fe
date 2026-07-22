@@ -4,15 +4,49 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import { useCart } from '@/components/CartProvider';
+import { useAuth } from '@/components/AuthProvider';
 import type { Product } from '@/lib/types';
+import { useRouter } from 'next/navigation';
 
 // Kontrol qty + tombol tambah keranjang di halaman detail produk.
 export default function AddToCart({ product }: { product: Product }) {
   const { add } = useCart();
+  const { customer } = useAuth();
+  const router = useRouter();
   const [qty, setQty] = useState(product.moq || 1);
   const [added, setAdded] = useState(false);
 
   const sellable = product.priceMode === 'fixed' && product.stockStatus === 'in_stock';
+
+  if (!customer) {
+    return (
+      <div className="pd-buy">
+        <div style={{
+          padding: '16px',
+          background: 'var(--amber-tint)',
+          border: '1px solid var(--amber)',
+          borderRadius: 12,
+          marginBottom: 16
+        }}>
+          <strong style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#70451c', fontSize: '0.92rem', marginBottom: 6 }}>
+            <Icon name="shieldCheck" size={18} /> Harga & Pemesanan Khusus Customer
+          </strong>
+          <p style={{ color: 'var(--ink-soft)', fontSize: '0.84rem', margin: 0, lineHeight: 1.45 }}>
+            Harga khusus customer, minimum order, dan stok tersedia setelah Anda login.
+          </p>
+        </div>
+
+        <div className="pd-buy-actions">
+          <Link
+            href={`/login?redirect=${encodeURIComponent(`/catalog/${product.slug}`)}`}
+            className="btn btn-solid btn-block"
+          >
+            Login untuk Memesan <Icon name="arrow" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (!sellable) {
     return (

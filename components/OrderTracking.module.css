@@ -1,0 +1,14 @@
+.track { display: flex; flex-direction: column; }
+.step { position: relative; padding: 0 0 24px 30px; }
+.step:last-child { padding-bottom: 0; }
+.step::before { content: ''; position: absolute; top: 18px; bottom: 0; left: 7px; width: 2px; background: var(--line); }
+.step:last-child::before { display: none; }
+.done::before { background: var(--green); }
+.dot { position: absolute; top: 2px; left: 0; width: 16px; height: 16px; border: 2px solid var(--line-strong); border-radius: 50%; background: var(--surface); }
+.done .dot { border-color: var(--green); background: var(--green); }
+.current .dot { border-color: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+.body { padding-bottom: 0; }
+.label { font-weight: 500; }
+.step:not(.done) .label { color: var(--ink-soft); }
+.at { display: block; margin-top: 2px; color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.76rem; }
+.cancelled { padding: 10px 14px; border-radius: 9px; background: rgba(178, 60, 50, 0.12); color: #b23c32; font-family: var(--font-mono); font-size: 0.78rem; }

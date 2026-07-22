@@ -7,8 +7,11 @@ import Icon from '@/components/Icon';
 import Breadcrumb from '@/components/Breadcrumb';
 import EmptyState from '@/components/EmptyState';
 import { useCart } from '@/components/CartProvider';
+import { useAuth } from '@/components/AuthProvider';
+import { useTransactions } from '@/components/TransactionProvider';
 import { shippingMethods, bankAccounts } from '@/lib/commerce';
 import { formatIDR } from '@/lib/format';
+import type { Order } from '@/lib/types';
 
 const ADMIN_FEE = 5000;
 
@@ -25,6 +28,8 @@ const DEFAULT_SHIPPING = firstOrThrow(
 
 export default function CheckoutPage() {
   const { items, subtotal, count, clear, ready } = useCart();
+  const { customer } = useAuth();
+  const { createOrder } = useTransactions();
   const [ship, setShip] = useState(DEFAULT_SHIPPING.id);
   const [placed, setPlaced] = useState<{ number: string; total: number } | null>(null);
 
@@ -33,7 +38,44 @@ export default function CheckoutPage() {
 
   function placeOrder(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const number = `IKN-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${Math.floor(Math.random() * 90000 + 10000)}`;
+    const form = new FormData(e.currentTarget);
+    const now = new Date();
+    const number = `IKN-${now.toISOString().slice(0, 10).replace(/-/g, '')}-${Math.floor(Math.random() * 90000 + 10000)}`;
+    const activeBank = bankAccounts.find((bank) => bank.active) ?? bankAccounts[0];
+    const recipient = String(form.get('recipient') || customer?.name || 'Customer');
+    const email = String(form.get('email') || customer?.email || 'customer@example.test');
+    const company = String(form.get('company') || customer?.company || recipient);
+    const order: Order = {
+      number,
+      date: now.toISOString(),
+      customer: {
+        id: customer?.id || 'guest',
+        name: company,
+        email,
+        pic: recipient,
+      },
+      items: items.map((item) => ({ ...item, price: item.price || 0 })),
+      subtotal,
+      shipping: shipping.amount,
+      adminFee: ADMIN_FEE,
+      total,
+      status: 'awaiting_payment',
+      payment: 'unpaid',
+      bank: activeBank?.id || '',
+      shippingMethod: shipping.id,
+      address: {
+        label: 'Alamat checkout',
+        recipient,
+        phone: String(form.get('phone') || ''),
+        line: String(form.get('address') || ''),
+      },
+      trackingNo: null,
+      proofUploaded: false,
+      dueAt: new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString(),
+      timeline: [{ status: 'awaiting_payment', at: now.toISOString() }],
+    };
+
+    createOrder(order);
     setPlaced({ number, total });
     clear();
   }
@@ -87,7 +129,7 @@ export default function CheckoutPage() {
                 <Link href="/dashboard/pesanan" className="btn btn-solid">Lihat pesanan saya <Icon name="arrow" /></Link>
                 <Link href="/catalog" className="btn btn-line">Lanjut belanja</Link>
               </div>
-              <p className="admin-note" style={{ marginTop: 24 }}>Demo — pesanan tidak benar-benar tersimpan tanpa backend.</p>
+              <p className="admin-note" style={{ marginTop: 24 }}>Mode dummy JSON — pesanan tersimpan lokal di browser ini.</p>
             </div>
           </div>
         </section>
@@ -112,11 +154,11 @@ export default function CheckoutPage() {
               <div className="co-block">
                 <h2 className="h3 pd-sec-title">Alamat pengiriman</h2>
                 <div className="co-fields">
-                  <label><span className="label">Nama penerima</span><input required defaultValue="" placeholder="Nama lengkap / PIC" /></label>
-                  <label><span className="label">Perusahaan</span><input placeholder="Nama perusahaan" /></label>
-                  <label><span className="label">Telepon</span><input required placeholder="+62 ..." /></label>
-                  <label><span className="label">Email</span><input type="email" required placeholder="email@perusahaan.com" /></label>
-                  <label className="co-full"><span className="label">Alamat lengkap</span><textarea rows={3} required placeholder="Jalan, kota, provinsi, kode pos" /></label>
+                  <label><span className="label">Nama penerima</span><input name="recipient" required defaultValue={customer?.name || ''} placeholder="Nama lengkap / PIC" /></label>
+                  <label><span className="label">Perusahaan</span><input name="company" defaultValue={customer?.company || ''} placeholder="Nama perusahaan" /></label>
+                  <label><span className="label">Telepon</span><input name="phone" required placeholder="+62 ..." /></label>
+                  <label><span className="label">Email</span><input name="email" type="email" required defaultValue={customer?.email || ''} placeholder="email@perusahaan.com" /></label>
+                  <label className="co-full"><span className="label">Alamat lengkap</span><textarea name="address" rows={3} required placeholder="Jalan, kota, provinsi, kode pos" /></label>
                 </div>
               </div>
 

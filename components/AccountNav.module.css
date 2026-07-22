@@ -1,0 +1,37 @@
+.nav { display: flex; flex: 1; flex-direction: column; padding: 8px; }
+.link { width: 100%; display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 0; border-radius: 8px; background: transparent; color: var(--ink-soft); cursor: pointer; font: inherit; font-size: 0.94rem; text-align: left; transition: background 0.2s var(--ease), color 0.2s var(--ease); }
+.link:hover { background: var(--paper-2); color: var(--ink); }
+.active { background: var(--green-tint); color: var(--green); font-weight: 500; }
+.logout {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 -10px 16px var(--surface);
+}
+.logout:hover { color: #b23c32; }
+
+/* Collapsible Settings Menu */
+.collapsible { display: flex; flex-direction: column; margin-top: 8px; border-top: 1px solid var(--line); padding-top: 8px; }
+.chevron { margin-left: auto; transition: transform 0.2s var(--ease); display: flex; align-items: center; }
+.openBtn { font-weight: 500; color: var(--ink); }
+.collapseBody { display: flex; flex-direction: column; gap: 4px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.3s var(--ease), opacity 0.3s var(--ease), margin-top 0.3s var(--ease); }
+.collapseBody.open { max-height: 200px; opacity: 1; margin-top: 8px; }
+.subLink { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 42px; border: 0; border-radius: 8px; background: transparent; color: var(--ink-soft); cursor: pointer; font: inherit; font-size: 0.9rem; text-align: left; transition: background 0.2s var(--ease), color 0.2s var(--ease); }
+.subLink:hover { background: var(--paper-2); color: var(--ink); }
+.subLink.active { background: var(--green-tint); color: var(--green); font-weight: 500; }
+.backLink { margin-top: auto; }
+
+.collapsedNav { padding-inline: 0; }
+.collapsedNav .link,
+.collapsedNav .subLink { justify-content: center; gap: 0; min-height: 44px; padding-inline: 0; }
+.collapsedNav .linkLabel,
+.collapsedNav .chevron { display: none; }
+.collapsedNav .collapsible { margin-top: 8px; }
+.collapsedNav .collapseBody { gap: 3px; }
+.collapsedNav .collapseBody.open { margin-top: 6px; }
+.collapsedNav .subLink { padding-block: 10px; }
+.collapsedNav .logout { margin-top: auto; }

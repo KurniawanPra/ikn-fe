@@ -19,20 +19,76 @@ import type {
 } from '@/lib/types';
 
 export const dashboardStats: DashboardStat[] = [
-  { key: 'orders', label: 'Pesanan bulan ini', value: '58', delta: '+12%', icon: 'drop' },
-  { key: 'revenue', label: 'Penjualan bulan ini', value: 'Rp 214 jt', delta: '+8%', icon: 'flask' },
-  { key: 'customers', label: 'Customer aktif', value: '24', delta: '+3', icon: 'handshake' },
-  { key: 'pending', label: 'Perlu verifikasi', value: '3', delta: 'baru', icon: 'target' },
+  {
+    key: 'orders',
+    label: 'Pesanan bulan ini',
+    value: '58',
+    delta: '+8%',
+    icon: 'orders',
+    comparison: 'Naik 4 pesanan dibanding Juni',
+    detail: '42 sudah dibayar · 16 masih diproses',
+    href: '/admin/orders',
+    actionLabel: 'Buka daftar pesanan',
+    tone: 'positive',
+  },
+  {
+    key: 'revenue',
+    label: 'Penjualan bulan ini',
+    value: 'Rp214 jt',
+    delta: '+4,4%',
+    icon: 'trendUp',
+    comparison: 'Naik Rp9 jt dibanding Juni',
+    detail: '86% dari target bulanan Rp250 jt',
+    href: '/admin/reports/sales',
+    actionLabel: 'Buka laporan penjualan',
+    tone: 'positive',
+  },
+  {
+    key: 'customers',
+    label: 'Customer aktif',
+    value: '24',
+    delta: '+3 baru',
+    icon: 'users',
+    comparison: '3 customer baru bulan ini',
+    detail: '21 customer lama · 3 customer baru',
+    href: '/admin/customers',
+    actionLabel: 'Lihat daftar customer',
+    tone: 'neutral',
+  },
+  {
+    key: 'pending',
+    label: 'Perlu verifikasi',
+    value: '3',
+    delta: 'Perlu tindakan',
+    icon: 'paymentCheck',
+    comparison: '3 bukti pembayaran menunggu',
+    detail: 'Waktu tunggu paling lama 2 jam',
+    href: '/admin/payments',
+    actionLabel: 'Periksa pembayaran',
+    tone: 'attention',
+  },
 ];
 
-export const salesByMonth: SalesPoint[] = [
-  { month: 'Feb', total: 142 },
-  { month: 'Mar', total: 168 },
-  { month: 'Apr', total: 155 },
-  { month: 'Mei', total: 190 },
-  { month: 'Jun', total: 205 },
-  { month: 'Jul', total: 214 },
-];
+const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+const salesSeries: Record<number, Array<[number, number]>> = {
+  2024: [[112, 31], [118, 33], [126, 35], [121, 34], [135, 38], [142, 40], [149, 41], [145, 39], [158, 43], [166, 46], [172, 47], [181, 50]],
+  2025: [[154, 42], [161, 44], [169, 46], [165, 45], [178, 49], [184, 50], [192, 52], [188, 51], [199, 54], [207, 56], [218, 59], [226, 61]],
+  2026: [[136, 37], [142, 39], [168, 46], [155, 42], [190, 52], [205, 54], [214, 58], [221, 60], [228, 62], [236, 64], [244, 66], [252, 68]],
+};
+
+export const salesHistory: SalesPoint[] = Object.entries(salesSeries).flatMap(([year, points]) =>
+  points.map(([total, orders], monthIndex) => ({
+    month: monthLabels[monthIndex] ?? `Bulan ${monthIndex + 1}`,
+    monthIndex,
+    year: Number(year),
+    total,
+    orders,
+  }))
+);
+
+export const salesByMonth: SalesPoint[] = salesHistory
+  .filter((point) => point.year === 2026 && point.monthIndex <= 6)
+  .slice(-6);
 
 export const customers: Customer[] = [
   {

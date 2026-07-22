@@ -1,0 +1,8 @@
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border: 1px solid var(--line-strong); border-radius: 999px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; white-space: nowrap; }
+.small { padding: 3px 9px; font-size: 0.66rem; }
+.ok { border-color: transparent; background: var(--green-tint); color: var(--green); }
+.warn { border-color: transparent; background: var(--amber-tint); color: var(--amber); }
+.info { border-color: transparent; background: rgba(120, 130, 170, 0.16); color: #5b6bb0; }
+.bad { border-color: transparent; background: rgba(178, 60, 50, 0.14); color: #b23c32; }
+:global([data-theme='dark']) .info { color: #9aa6e6; }
+:global([data-theme='dark']) .bad { color: #e58a80; }

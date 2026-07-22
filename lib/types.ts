@@ -23,6 +23,19 @@ export type IconName =
   | 'pin'
   | 'phone'
   | 'mail'
+  | 'bag'
+  | 'image'
+  | 'trash'
+  | 'orders'
+  | 'wallet'
+  | 'shieldCheck'
+  | 'package'
+  | 'truck'
+  | 'checkCircle'
+  | 'cancelCircle'
+  | 'trendUp'
+  | 'users'
+  | 'paymentCheck'
   | 'drop'
   | 'check'
   | 'plus'
@@ -215,11 +228,19 @@ export interface DashboardStat {
   value: string;
   delta: string;
   icon: IconName;
+  comparison: string;
+  detail: string;
+  href: string;
+  actionLabel: string;
+  tone?: 'positive' | 'attention' | 'neutral';
 }
 
 export interface SalesPoint {
   month: string;
+  monthIndex: number;
+  year: number;
   total: number;
+  orders: number;
 }
 
 export type CustomerStatus = 'active' | 'inactive';

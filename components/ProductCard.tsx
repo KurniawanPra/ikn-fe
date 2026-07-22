@@ -6,12 +6,16 @@ import Icon from '@/components/Icon';
 import StatusBadge from '@/components/StatusBadge';
 import StarRating from '@/components/StarRating';
 import { useCart } from '@/components/CartProvider';
+import { useAuth } from '@/components/AuthProvider';
 import { stockLabels } from '@/lib/catalog';
 import { formatIDR } from '@/lib/format';
 import type { Product } from '@/lib/types';
+import { useRouter } from 'next/navigation';
 
 export default function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();
+  const { customer } = useAuth();
+  const router = useRouter();
   const stock = stockLabels[product.stockStatus] || stockLabels.out_of_stock;
   const sellable = product.priceMode === 'fixed' && product.stockStatus === 'in_stock';
 
@@ -39,22 +43,45 @@ export default function ProductCard({ product }: { product: Product }) {
 
         <div className="pcard-foot">
           <span className="pcard-price">
-            {product.priceMode === 'fixed'
-              ? <>{formatIDR(product.price)}<small>/{product.unit}</small></>
-              : <span className="pcard-quote">Hubungi marketing</span>}
+            {customer ? (
+              product.priceMode === 'fixed' ? (
+                <>{formatIDR(product.price)}<small>/{product.unit}</small></>
+              ) : (
+                <span className="pcard-quote">Hubungi marketing</span>
+              )
+            ) : (
+              <span className="pcard-quote" style={{ color: 'var(--amber)' }}>
+                Harga tersedia setelah login
+              </span>
+            )}
           </span>
 
-          {sellable ? (
-            <button
-              type="button"
-              className="pcard-add"
-              aria-label={`Tambah ${product.name} ke keranjang`}
-              onClick={() => add(product, product.moq || 1)}
-            >
-              <Icon name="plus" size={18} />
-            </button>
+          {customer ? (
+            sellable ? (
+              <button
+                type="button"
+                className="pcard-add"
+                aria-label={`Tambah ${product.name} ke keranjang`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  add(product, product.moq || 1);
+                }}
+              >
+                <Icon name="plus" size={18} />
+              </button>
+            ) : (
+              <Link href={`/catalog/${product.slug}`} className="pcard-add pcard-add-view" aria-label="Lihat detail">
+                <Icon name="arrow" size={18} />
+              </Link>
+            )
           ) : (
-            <Link href={`/catalog/${product.slug}`} className="pcard-add pcard-add-view" aria-label="Lihat detail">
+            <Link
+              href={`/login?redirect=${encodeURIComponent(`/catalog/${product.slug}`)}`}
+              className="pcard-add pcard-add-login"
+              aria-label="Login untuk memesan"
+              title="Login untuk memesan"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Icon name="arrow" size={18} />
             </Link>
           )}

@@ -1,26 +1,9 @@
 import './globals.css';
-import './pages.css';
-import '@/components/chrome.css';
-import '@/components/commerce.css';
-import '@/components/admin.css';
-import { Poppins, IBM_Plex_Mono } from 'next/font/google';
+import './shared.css';
 import { LanguageProvider } from '@/components/LanguageProvider';
 import { CartProvider } from '@/components/CartProvider';
 import { AuthProvider } from '@/components/AuthProvider';
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-poppins',
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  display: 'swap',
-  variable: '--font-mono-plex',
-});
+import { TransactionProvider } from '@/components/TransactionProvider';
 
 export const metadata = {
   metadataBase: new URL('https://ikn.co.id'),
@@ -35,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${poppins.variable} ${plexMono.variable}`}>
+    <html lang="id">
       <head>
         {/* Anti-flash: pasang tema tersimpan sebelum paint pertama */}
         <script
@@ -47,7 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <LanguageProvider>
           <AuthProvider>
-            <CartProvider>{children}</CartProvider>
+            <TransactionProvider>
+              <CartProvider>{children}</CartProvider>
+            </TransactionProvider>
           </AuthProvider>
         </LanguageProvider>
       </body>

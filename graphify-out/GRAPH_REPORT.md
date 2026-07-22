@@ -1,68 +1,58 @@
-# Graph Report - ikn-revisi-2  (2026-07-21)
+# Graph Report - fe  (2026-07-22)
 
 ## Corpus Check
-- 105 files · ~134,712 words
+- 115 files · ~140,343 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 490 nodes · 1053 edges · 33 communities (28 shown, 5 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.8)
+- 490 nodes · 1127 edges · 24 communities (21 shown, 3 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `68d2ba56`
+- Built from commit: `a4001e3f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Next/React Dependencies
-- Site Content Data
-- Sitemap Reference (image)
-- jsconfig Path Aliases
-- Homepage UI Mock (image)
-- Root Layout & Fonts
-- Icon & Theme Toggle
-- Rubber Tapping Imagery
-- Language Provider
-- i18n Dictionary
-- Factory Imagery
-- Production Imagery
-- Berita Page
-- Keberlanjutan Page
-- Produk Page
-- Tentang Page
-- Hero Slider
-- Video Gallery
-- Kontak Page
-- Login Page
-- Home Page
-- Footer
-- Hero Subtitle
+- Icon.tsx
+- catalog.ts
+- commerce.ts
+- useAuth
+- AuthProvider.tsx
+- compilerOptions
+- types.ts
+- package.json
+- site.ts
+- Reveal.tsx
+- Breadcrumb.tsx
 - Footer.tsx
-- CustomerCompanyForm.tsx
 - page.tsx
-- Reveal (scroll)
-- Next Config
+- api.ts
+- layout.tsx
+- HeroSlider.tsx
+- next.config.mjs
+- next-env.d.ts
 
 ## God Nodes (most connected - your core abstractions)
-1. `formatIDR()` - 29 edges
-2. `formatDate()` - 28 edges
-3. `useAuth()` - 27 edges
+1. `formatIDR()` - 33 edges
+2. `useAuth()` - 31 edges
+3. `formatDate()` - 28 edges
 4. `AdminPageHead()` - 21 edges
 5. `compilerOptions` - 18 edges
 6. `Column` - 17 edges
 7. `DataTable()` - 17 edges
-8. `RowActions()` - 15 edges
-9. `Reveal()` - 14 edges
-10. `useCart()` - 11 edges
+8. `useLang()` - 15 edges
+9. `RowActions()` - 15 edges
+10. `Reveal()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `AuthCard()` --calls--> `useAuth()`  [EXTRACTED]
+  app/(auth)/login/page.tsx → components/AuthProvider.tsx
+- `Berita()` --calls--> `formatDate()`  [EXTRACTED]
+  app/(site)/berita/page.tsx → lib/format.ts
 - `AdminAdditionalFees()` --calls--> `formatIDR()`  [EXTRACTED]
   app/(admin)/admin/additional-fees/page.tsx → lib/format.ts
-- `AdminLoginForm()` --calls--> `useAuth()`  [EXTRACTED]
-  app/(admin)/admin/login/page.tsx → components/AuthProvider.tsx
-- `LoginForm()` --calls--> `useAuth()`  [EXTRACTED]
-  app/(site)/login/page.tsx → components/AuthProvider.tsx
 - `AdminCustomers()` --calls--> `formatDate()`  [EXTRACTED]
   app/(admin)/admin/customers/page.tsx → lib/format.ts
 - `AdminNews()` --calls--> `formatDate()`  [EXTRACTED]
@@ -71,119 +61,87 @@
 ## Import Cycles
 - None detected.
 
-## Communities (33 total, 5 thin omitted)
+## Communities (24 total, 3 thin omitted)
 
-### Community 0 - "Next/React Dependencies"
+### Community 0 - "Icon.tsx"
+Cohesion: 0.06
+Nodes (37): metadata, typeLabels, metadata, metadata, metadata, metadata, metadata, AdminCustomers() (+29 more)
+
+### Community 1 - "catalog.ts"
+Cohesion: 0.07
+Nodes (28): metadata, CategoryPage(), generateMetadata(), metadata, generateMetadata(), ProductDetail(), AdminProduct, emptyForm (+20 more)
+
+### Community 2 - "commerce.ts"
+Cohesion: 0.13
+Nodes (19): AdminAdditionalFees(), AdminDashboard(), metadata, pipeline, AdminPayments(), CartPage(), AddToCart(), AdminSalesChart() (+11 more)
+
+### Community 3 - "useAuth"
 Cohesion: 0.08
-Nodes (24): next, dependencies, next, react, react-dom, devDependencies, @types/node, @types/react (+16 more)
+Nodes (30): metadata, metadata, AccountNav(), AdminShell(), groups, NavGroup, useAuth(), CustomerShell() (+22 more)
 
-### Community 1 - "Site Content Data"
-Cohesion: 0.19
-Nodes (12): metadata, Marquee(), akhlak, capabilities, company, marquee, misi, news (+4 more)
+### Community 4 - "AuthProvider.tsx"
+Cohesion: 0.07
+Nodes (30): AuthCard(), AuthMode, metadata, metadata, metadata, metadata, AuthContext, AuthContextValue (+22 more)
 
-### Community 2 - "Sitemap Reference (image)"
-Cohesion: 0.22
-Nodes (10): Fitur Bahasa (Indonesia - Inggris language feature), IKN Revisi Web Project, About Us Section (History, Vision and Mission, Contact Us), Business Section (Resiprene Products, Rubber Articles Products), Media Section (Galery, News), Sustainability Section (Certificate, Our Customers, Brochures, Whistle Blowing System, Reach Compliance), Google Sheets-style Spreadsheet UI, Status: Open (all items) (+2 more)
-
-### Community 3 - "jsconfig Path Aliases"
+### Community 5 - "compilerOptions"
 Cohesion: 0.06
 Nodes (30): ./*, dom, dom.iterable, ES2022, next-env.d.ts, .next/types/**/*.ts, node_modules, **/*.ts (+22 more)
 
-### Community 4 - "Homepage UI Mock (image)"
-Cohesion: 0.40
-Nodes (6): Homepage Screenshot, Content Section, Hero Section, IKN Project Web UI, Landing Page Layout, Navigation Bar
-
-### Community 5 - "Root Layout & Fonts"
-Cohesion: 0.11
-Nodes (20): metadata, plexMono, poppins, CartProvider(), HeroSubtitle(), HeroTitle(), LangToggle(), LanguageContext (+12 more)
-
-### Community 6 - "Icon & Theme Toggle"
-Cohesion: 0.20
-Nodes (7): metadata, AdminShell(), groups, NavGroup, Theme, ThemeToggle(), roleLabels
-
-### Community 7 - "Rubber Tapping Imagery"
-Cohesion: 0.60
-Nodes (5): Natural Latex / Rubber Sap, Rubber Tree Latex Tapping Photo, Rubber Plantation Commodity, Rubber Tree (Karet / Hevea brasiliensis), Rubber Tapping (Penyadapan)
-
-### Community 8 - "Language Provider"
-Cohesion: 0.05
-Nodes (43): AdminAdditionalFees(), metadata, typeLabels, metadata, metadata, metadata, metadata, metadata (+35 more)
-
-### Community 9 - "i18n Dictionary"
+### Community 6 - "types.ts"
 Cohesion: 0.09
-Nodes (29): AdminCustomers(), AdminNews(), AdminOrderDetail(), statusActions, AdminOrders(), metadata, AdminDashboard(), metadata (+21 more)
+Nodes (30): adminUsers, customers, menuItems, monthLabels, permissionList, salesByMonth, salesSeries, wbsReports (+22 more)
 
-### Community 10 - "Factory Imagery"
-Cohesion: 0.67
-Nodes (4): Industrial Factory Facility, IKN Project Asset, Pabrik 2-1 Factory Illustration, Industrial Manufacturing Concept
+### Community 7 - "package.json"
+Cohesion: 0.08
+Nodes (25): next, dependencies, next, react, react-dom, devDependencies, @types/node, @types/react (+17 more)
 
-### Community 11 - "Production Imagery"
-Cohesion: 0.50
-Nodes (4): Agriculture / Plantation Commodity, Rubber Production Photo, Rubber Production Activity, Natural Rubber (Karet)
-
-### Community 12 - "Berita Page"
+### Community 8 - "site.ts"
 Cohesion: 0.16
-Nodes (18): AdminLoginForm(), AuthContext, AuthContextValue, AuthProvider(), isAccount(), readSession(), Account, AdminAccount (+10 more)
+Nodes (13): metadata, metadata, Marquee(), akhlak, capabilities, company, marquee, misi (+5 more)
 
-### Community 13 - "Keberlanjutan Page"
-Cohesion: 0.06
-Nodes (42): OrderTracking(), adminUsers, customers, dashboardStats, menuItems, permissionList, wbsReports, wbsStatusLabels (+34 more)
+### Community 9 - "Reveal.tsx"
+Cohesion: 0.25
+Nodes (3): metadata, Video, videos
 
-### Community 14 - "Produk Page"
-Cohesion: 0.10
-Nodes (19): CheckoutPage(), DEFAULT_SHIPPING, AddToCart(), AdminPageHeadProps, NavItem, CartButton(), CartContext, CartContextValue (+11 more)
+### Community 10 - "Breadcrumb.tsx"
+Cohesion: 0.11
+Nodes (11): metadata, metadata, metadata, metadata, metadata, BreadcrumbItem, Reveal(), RevealProps (+3 more)
 
-### Community 15 - "Tentang Page"
-Cohesion: 0.24
-Nodes (7): metadata, AccountNav(), links, useAuth(), CustomerShell(), pageTitle(), CustomerGuard()
-
-### Community 17 - "Video Gallery"
-Cohesion: 0.21
-Nodes (6): metadata, metadata, CustomerAddresses(), CustomerProfileForm(), getCustomerProfile(), CustomerAddress
-
-### Community 18 - "Kontak Page"
-Cohesion: 0.38
-Nodes (5): bodies, generateMetadata(), NewsDetail(), newsBySlug(), newsItems
-
-### Community 19 - "Login Page"
-Cohesion: 0.18
-Nodes (5): metadata, slides, IconProps, paths, sustainability
-
-### Community 20 - "Home Page"
-Cohesion: 0.39
-Nodes (6): AdminPayments(), CustomerOrderDetail(), PaymentProof(), bankById(), getOrderForCustomer(), shippingById()
-
-### Community 21 - "Footer"
-Cohesion: 0.19
-Nodes (6): metadata, metadata, metadata, Reveal(), RevealProps, certificates
-
-### Community 23 - "Footer.tsx"
+### Community 11 - "Footer.tsx"
 Cohesion: 0.33
 Nodes (3): contact, locations, nav
 
-### Community 28 - "Reveal (scroll)"
-Cohesion: 0.15
-Nodes (5): metadata, metadata, BreadcrumbItem, brochures, customerLogos
+### Community 12 - "page.tsx"
+Cohesion: 0.24
+Nodes (7): Berita(), metadata, bodies, generateMetadata(), NewsDetail(), newsBySlug(), newsItems
+
+### Community 13 - "api.ts"
+Cohesion: 0.07
+Nodes (42): AdminOrderDetail(), statusActions, metadata, metadata, CheckoutPage(), DEFAULT_SHIPPING, AdminPageHeadProps, NavItem (+34 more)
+
+### Community 17 - "HeroSlider.tsx"
+Cohesion: 0.22
+Nodes (3): slides, IconProps, paths
 
 ## Knowledge Gaps
 - **126 isolated node(s):** `metadata`, `typeLabels`, `metadata`, `metadata`, `metadata` (+121 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `useAuth()` connect `Tentang Page` to `Root Layout & Fonts`, `Icon & Theme Toggle`, `i18n Dictionary`, `Berita Page`, `Video Gallery`, `Home Page`, `CustomerCompanyForm.tsx`, `page.tsx`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
-- **Why does `formatIDR()` connect `i18n Dictionary` to `Language Provider`, `Home Page`, `Produk Page`?**
+- **Why does `useAuth()` connect `useAuth` to `catalog.ts`, `commerce.ts`, `AuthProvider.tsx`, `api.ts`?**
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+- **Why does `formatIDR()` connect `commerce.ts` to `Icon.tsx`, `catalog.ts`, `api.ts`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+- **Why does `formatDate()` connect `Icon.tsx` to `catalog.ts`, `commerce.ts`, `page.tsx`, `api.ts`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `formatDate()` connect `i18n Dictionary` to `Language Provider`, `Kontak Page`, `Home Page`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **What connects `metadata`, `typeLabels`, `metadata` to the rest of the system?**
   _126 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Next/React Dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
-- **Should `jsconfig Path Aliases` be split into smaller, more focused modules?**
-  _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._
-- **Should `Root Layout & Fonts` be split into smaller, more focused modules?**
-  _Cohesion score 0.11397849462365592 - nodes in this community are weakly interconnected._
+- **Should `Icon.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.0639269406392694 - nodes in this community are weakly interconnected._
+- **Should `catalog.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.0700354609929078 - nodes in this community are weakly interconnected._
+- **Should `commerce.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.12923076923076923 - nodes in this community are weakly interconnected._

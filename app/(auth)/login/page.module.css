@@ -1,0 +1,231 @@
+.page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(20px, 5vw, 56px);
+  background:
+    radial-gradient(circle at 15% 15%, var(--green-tint), transparent 34%),
+    radial-gradient(circle at 85% 85%, var(--amber-tint), transparent 30%),
+    var(--paper);
+}
+
+.card {
+  width: min(100%, 520px);
+  padding: clamp(26px, 5vw, 46px);
+  border: 1px solid var(--line-strong);
+  border-radius: 24px 0 24px 0;
+  background: var(--surface);
+  box-shadow: 18px 18px 48px color-mix(in srgb, var(--neu-dark) 65%, transparent);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 34px;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+}
+
+.brand strong {
+  font-size: 0.95rem;
+}
+
+.brand span,
+.eyebrow {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin-bottom: 28px;
+}
+
+.heading h1 {
+  margin: 7px 0 10px;
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.heading p {
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field > span:first-child {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  outline: none;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-tint);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.passwordField {
+  position: relative;
+  display: block;
+}
+
+.passwordField input {
+  padding-right: 104px;
+}
+
+.passwordField button {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  cursor: pointer;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.primaryButton {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 13px;
+  border-radius: 9px;
+  background: rgba(178, 60, 50, 0.12);
+  color: #b23c32;
+  font-size: 0.84rem;
+}
+
+.demo {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: var(--paper-2);
+}
+
+.demo span {
+  margin-bottom: 2px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo code {
+  overflow-wrap: anywhere;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+}
+
+.modeSwitch {
+  margin-top: 26px;
+  color: var(--ink-soft);
+  text-align: center;
+  font-size: 0.86rem;
+}
+
+.modeSwitch button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--green);
+  cursor: pointer;
+  font: inherit;
+}
+
+.success {
+  padding: 20px 0 8px;
+  color: var(--green);
+  text-align: center;
+}
+
+.success h2 {
+  margin: 12px 0 8px;
+  color: var(--ink);
+}
+
+.success p {
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.loading {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 520px) {
+  .page {
+    align-items: start;
+    padding: 14px;
+  }
+
+  .card {
+    min-height: calc(100svh - 28px);
+    padding: 24px 20px;
+    border-radius: 18px 0 18px 0;
+  }
+
+  .brand {
+    margin-bottom: 28px;
+  }
+}

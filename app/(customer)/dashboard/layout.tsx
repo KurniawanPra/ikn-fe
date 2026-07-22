@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import CustomerShell from '@/components/customer/CustomerShell';
+import '@/components/commerce.css';
 
 export const metadata = {
   title: { default: 'Dashboard Customer', template: '%s · Dashboard · PT IKN' },

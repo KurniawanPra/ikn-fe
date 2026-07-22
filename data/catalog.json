@@ -1,0 +1,320 @@
+{
+  "categories": [
+    {
+      "slug": "resiprene",
+      "name": "Resiprene",
+      "nameEn": "Resiprene",
+      "desc": "Cyclised natural rubber untuk coating & marine paint."
+    },
+    {
+      "slug": "rubber-articles",
+      "name": "Barang Karet",
+      "nameEn": "Rubber Articles",
+      "desc": "Komponen karet industri untuk berbagai pabrik."
+    },
+    {
+      "slug": "rubber-thread",
+      "name": "Benang Karet",
+      "nameEn": "Rubber Thread",
+      "desc": "Benang karet berbahan lateks alam."
+    }
+  ],
+  "products": [
+    {
+      "slug": "resiprene-35",
+      "code": "RSP-35",
+      "name": "Resiprene 35",
+      "nameEn": "Resiprene 35",
+      "category": "resiprene",
+      "kind": "Cyclised Natural Rubber",
+      "aliases": [
+        "resiprine",
+        "respirine",
+        "resiprene 35"
+      ],
+      "priceMode": "fixed",
+      "price": 185000,
+      "unit": "kg",
+      "moq": 25,
+      "stock": 1200,
+      "stockStatus": "in_stock",
+      "image": "/img/produksi-karet-1.webp",
+      "rating": 4.8,
+      "reviewCount": 12,
+      "summary": "Karet alam tersiklisasi dengan kelarutan sangat baik pada pelarut tak berbau. Bahan andalan untuk cat pelindung, coating perawatan, dan cat marine.",
+      "summaryEn": "Cyclised natural rubber with excellent solubility in odourless solvents. A key material for protective coatings, maintenance coatings, and marine paints.",
+      "highlights": [
+        "Cepat kering",
+        "Sangat tahan air",
+        "Tahan kimia (alkali & asam)",
+        "Adhesi baik ke beragam substrat"
+      ],
+      "specs": [
+        [
+          "Softening Point",
+          "125–145 °C"
+        ],
+        [
+          "Viscosity",
+          "18–24 detik (DIN 53211)"
+        ],
+        [
+          "Color",
+          "11–13 Lovibond"
+        ],
+        [
+          "Acid Value",
+          "Maks. 5 mg KOH/g"
+        ],
+        [
+          "Density",
+          "0,88–0,98 g/ml"
+        ],
+        [
+          "Appearance",
+          "Clear"
+        ]
+      ],
+      "applications": [
+        "Protective coatings",
+        "Cat kapal / anti-fouling",
+        "Concrete coating (baru & lapuk)",
+        "Odor-free finishing"
+      ],
+      "solubility": [
+        [
+          "White spirit",
+          "Sempurna"
+        ],
+        [
+          "Petroleum Solvent 100–140°C",
+          "Sempurna"
+        ],
+        [
+          "Aromatic Oil",
+          "Sempurna"
+        ],
+        [
+          "Xylene",
+          "Sempurna"
+        ],
+        [
+          "Toluene",
+          "Sempurna"
+        ],
+        [
+          "Mineral Oil",
+          "Baik"
+        ],
+        [
+          "Aliphatic Solvent",
+          "Baik"
+        ],
+        [
+          "n-Butyl acetate",
+          "Terbatas"
+        ],
+        [
+          "Methyl ethyl ketone (MEK)",
+          "Tidak larut"
+        ]
+      ]
+    },
+    {
+      "slug": "komponen-pabrik-semen",
+      "code": "ART-CMT",
+      "name": "Komponen Karet Pabrik Semen",
+      "nameEn": "Rubber Components for Cement Plants",
+      "category": "rubber-articles",
+      "kind": "Rubber Articles",
+      "aliases": [
+        "cement",
+        "semen"
+      ],
+      "priceMode": "quote",
+      "price": null,
+      "unit": "pcs",
+      "moq": 1,
+      "stock": 0,
+      "stockStatus": "made_to_order",
+      "image": "/img/pabrik-2-1.png",
+      "rating": 0,
+      "reviewCount": 0,
+      "summary": "Komponen karet tahan abrasi untuk lini produksi pabrik semen. Diproduksi sesuai spesifikasi (custom).",
+      "summaryEn": "Abrasion-resistant rubber components for cement plant production lines. Produced to specification (custom).",
+      "highlights": [
+        "Tahan abrasi",
+        "Custom sesuai gambar teknik",
+        "Lateks alam bermutu"
+      ],
+      "specs": [
+        [
+          "Bahan",
+          "Karet alam / compound"
+        ],
+        [
+          "Produksi",
+          "Made to order"
+        ],
+        [
+          "Kustomisasi",
+          "Sesuai spesifikasi"
+        ]
+      ],
+      "applications": [
+        "Pabrik semen"
+      ],
+      "solubility": []
+    },
+    {
+      "slug": "komponen-pabrik-sawit",
+      "code": "ART-PLM",
+      "name": "Komponen Karet Pabrik Kelapa Sawit",
+      "nameEn": "Rubber Components for Palm Oil Plants",
+      "category": "rubber-articles",
+      "kind": "Rubber Articles",
+      "aliases": [
+        "sawit",
+        "palm oil"
+      ],
+      "priceMode": "quote",
+      "price": null,
+      "unit": "pcs",
+      "moq": 1,
+      "stock": 0,
+      "stockStatus": "made_to_order",
+      "image": "/img/karet-1-1-scaled.jpg",
+      "rating": 0,
+      "reviewCount": 0,
+      "summary": "Komponen karet untuk mesin pengolahan kelapa sawit. Diproduksi dari lateks alam dengan kontrol mutu ketat.",
+      "summaryEn": "Rubber components for palm oil processing machinery. Made from natural latex with strict quality control.",
+      "highlights": [
+        "Kontrol mutu ketat",
+        "Ketersediaan berkelanjutan",
+        "Pengiriman tepat waktu"
+      ],
+      "specs": [
+        [
+          "Bahan",
+          "Lateks alam"
+        ],
+        [
+          "Produksi",
+          "Made to order"
+        ],
+        [
+          "Kapasitas",
+          "Bagian dari 91 ton/tahun"
+        ]
+      ],
+      "applications": [
+        "Pabrik kelapa sawit"
+      ],
+      "solubility": []
+    },
+    {
+      "slug": "komponen-pabrik-gula",
+      "code": "ART-SGR",
+      "name": "Komponen Karet Pabrik Gula",
+      "nameEn": "Rubber Components for Sugar Plants",
+      "category": "rubber-articles",
+      "kind": "Rubber Articles",
+      "aliases": [
+        "gula",
+        "sugar"
+      ],
+      "priceMode": "quote",
+      "price": null,
+      "unit": "pcs",
+      "moq": 1,
+      "stock": 0,
+      "stockStatus": "made_to_order",
+      "image": "/img/home.png",
+      "rating": 0,
+      "reviewCount": 0,
+      "summary": "Komponen karet untuk mesin pabrik gula. Dirancang tahan beban kerja tinggi.",
+      "summaryEn": "Rubber components for sugar mill machinery, designed for high workloads.",
+      "highlights": [
+        "Tahan beban tinggi",
+        "Custom",
+        "Teknologi modern"
+      ],
+      "specs": [
+        [
+          "Bahan",
+          "Karet alam / compound"
+        ],
+        [
+          "Produksi",
+          "Made to order"
+        ]
+      ],
+      "applications": [
+        "Pabrik gula"
+      ],
+      "solubility": []
+    },
+    {
+      "slug": "benang-karet",
+      "code": "RTH-01",
+      "name": "Benang Karet (Rubber Thread)",
+      "nameEn": "Rubber Thread",
+      "category": "rubber-thread",
+      "kind": "Rubber Thread",
+      "aliases": [
+        "benang",
+        "thread",
+        "rubber thread"
+      ],
+      "priceMode": "quote",
+      "price": null,
+      "unit": "kg",
+      "moq": 10,
+      "stock": 0,
+      "stockStatus": "out_of_stock",
+      "image": "/img/produksi-karet-1.webp",
+      "rating": 0,
+      "reviewCount": 0,
+      "summary": "Benang karet dari lateks alam dengan teknologi modern. Ketersediaan mengikuti keputusan operasional perusahaan.",
+      "summaryEn": "Rubber thread from natural latex using modern technology. Availability follows the company operational decisions.",
+      "highlights": [
+        "Lateks alam bermutu tinggi",
+        "Teknologi modern",
+        "Kontrol mutu ketat"
+      ],
+      "specs": [
+        [
+          "Bahan baku",
+          "Lateks alam"
+        ],
+        [
+          "Status",
+          "Ketersediaan terbatas"
+        ]
+      ],
+      "applications": [
+        "Industri tekstil",
+        "Komponen elastis"
+      ],
+      "solubility": []
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rv1",
+      "product": "resiprene-35",
+      "customer": "Coating Solutions Co.",
+      "rating": 5,
+      "date": "2026-05-12",
+      "body": "Konsisten antar batch, cepat kering. Cocok untuk formulasi cat marine kami."
+    },
+    {
+      "id": "rv2",
+      "product": "resiprene-35",
+      "customer": "PT Maritim Warna",
+      "rating": 4,
+      "date": "2026-04-02",
+      "body": "Kualitas bagus dan pengiriman tepat waktu. Dokumentasi teknis lengkap."
+    }
+  ]
+}

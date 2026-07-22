@@ -1,0 +1,4 @@
+.stars { display: inline-flex; align-items: center; gap: 2px; color: var(--amber); }
+.star { opacity: 0.85; }
+.on { opacity: 1; }
+.count { margin-left: 6px; color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.74rem; }

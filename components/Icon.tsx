@@ -1,5 +1,5 @@
 // Ikon garis SVG — stroke tipis, konsisten. Pengganti emoji.
-import type { ReactNode } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 import type { IconName } from '@/lib/types';
 
 const paths: Record<IconName, ReactNode> = {
@@ -61,6 +61,89 @@ const paths: Record<IconName, ReactNode> = {
       <path d="m2 7 10 6L22 7" />
     </>
   ),
+  bag: (
+    <>
+      <path d="M5 8h14l-1 13H6L5 8Z" />
+      <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+    </>
+  ),
+  image: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <circle cx="8.5" cy="9" r="1.5" />
+      <path d="m21 15-5-5L5 20" />
+    </>
+  ),
+  trash: (
+    <>
+      <path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14" />
+      <path d="M10 11v6M14 11v6" />
+    </>
+  ),
+  orders: (
+    <>
+      <rect x="5" y="3" width="14" height="18" rx="2" />
+      <path d="M9 8h6M9 12h6M9 16h4" />
+    </>
+  ),
+  wallet: (
+    <>
+      <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H18a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2V6.5Z" />
+      <path d="M4 8h16M15 12h5v4h-5a2 2 0 0 1 0-4Z" />
+    </>
+  ),
+  shieldCheck: (
+    <>
+      <path d="M12 3 5 6v5c0 4.6 2.8 8 7 10 4.2-2 7-5.4 7-10V6l-7-3Z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  package: (
+    <>
+      <path d="m4 7 8-4 8 4v10l-8 4-8-4V7Z" />
+      <path d="m4 7 8 4 8-4M12 11v10M8 5l8 4" />
+    </>
+  ),
+  truck: (
+    <>
+      <path d="M3 5h11v12H3V5ZM14 9h4l3 4v4h-7V9Z" />
+      <circle cx="7" cy="18" r="2" />
+      <circle cx="18" cy="18" r="2" />
+    </>
+  ),
+  checkCircle: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12 2.5 2.5L16.5 9" />
+    </>
+  ),
+  cancelCircle: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m9 9 6 6M15 9l-6 6" />
+    </>
+  ),
+  trendUp: (
+    <>
+      <path d="M4 19V5M4 19h16" />
+      <path d="m7 15 4-4 3 3 5-6" />
+      <path d="M15 8h4v4" />
+    </>
+  ),
+  users: (
+    <>
+      <circle cx="9" cy="8" r="3" />
+      <path d="M3.5 19a5.5 5.5 0 0 1 11 0" />
+      <path d="M16 5.5a3 3 0 0 1 0 5.5M17 14a5 5 0 0 1 3.5 5" />
+    </>
+  ),
+  paymentCheck: (
+    <>
+      <path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21V3Z" />
+      <path d="M9 7h6M9 11h3" />
+      <path d="m11 15 1.5 1.5L16 13" />
+    </>
+  ),
   drop: (
     <path d="M12 2.5s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 9.5 12 2.5 12 2.5Z" />
   ),
@@ -86,12 +169,14 @@ interface IconProps {
   size?: number;
   className?: string;
   strokeWidth?: number;
+  style?: CSSProperties;
 }
 
-export default function Icon({ name, size = 24, className = '', strokeWidth = 1.5 }: IconProps) {
+export default function Icon({ name, size = 24, className = '', strokeWidth = 1.5, style }: IconProps) {
   return (
     <svg
       className={className}
+      style={style}
       width={size}
       height={size}
       viewBox="0 0 24 24"

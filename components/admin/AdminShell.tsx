@@ -6,10 +6,14 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Icon from '@/components/Icon';
 import ThemeToggle from '@/components/ThemeToggle';
+import LangToggle from '@/components/LangToggle';
+import SidebarToggle from '@/components/SidebarToggle';
+import SessionLoader from '@/components/SessionLoader';
 import type { ReactNode } from 'react';
 import { useAuth } from '@/components/AuthProvider';
 import { roleLabels } from '@/lib/admin-data';
 import type { IconName } from '@/lib/types';
+import styles from '@/components/admin/AdminShell.module.css';
 
 interface NavItem {
   href: string;
@@ -66,6 +70,7 @@ export default function AdminShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
   const { admin, customer, ready, logoutAdmin } = useAuth();
 
@@ -76,20 +81,52 @@ export default function AdminShell({ children }: { children: ReactNode }) {
     if (ready && customer) {
       router.replace('/dashboard');
     } else if (ready && !admin && !isLoginPage) {
-      router.replace('/admin/login');
+      router.replace(`/login?next=${encodeURIComponent(pathname)}`);
     }
   }, [ready, admin, customer, isLoginPage, router]);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 1000px)');
+    const syncViewport = () => setIsMobile(media.matches);
+    syncViewport();
+    media.addEventListener('change', syncViewport);
+
+    const saved = window.localStorage.getItem('admin-sidebar-collapsed');
+    if (saved !== null) setCollapsed(saved === 'true');
+
+    return () => media.removeEventListener('change', syncViewport);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('admin-sidebar-collapsed', String(collapsed));
+  }, [collapsed]);
+
+  useEffect(() => {
+    setOpen(false);
+    const activeGroup = groups.find((group) => group.items.some((item) => item.href !== '/admin' && pathname.startsWith(item.href)));
+    if (activeGroup) setExpandedGroups((current) => ({ ...current, [activeGroup.title]: true }));
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open || !isMobile) return;
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [isMobile, open]);
 
   // Halaman login admin tidak memakai shell.
   if (isLoginPage && !customer) return <div className="admin-auth-wrap">{children}</div>;
 
   // Tahan render konten admin sampai sesi terverifikasi.
   if (!ready || !admin) {
-    return (
-      <div className="admin-auth-wrap">
-        <p className="admin-note">Memuat sesi…</p>
-      </div>
-    );
+    return <SessionLoader message="Memuat sesi admin..." portalName="Back-office Admin" />;
   }
 
   const initials = admin.name
@@ -101,41 +138,54 @@ export default function AdminShell({ children }: { children: ReactNode }) {
 
   function handleLogout() {
     logoutAdmin();
-    router.replace('/admin/login');
+    router.replace('/login');
+  }
+
+  function toggleSidebar() {
+    if (isMobile) setOpen((value) => !value);
+    else setCollapsed((value) => !value);
   }
 
   return (
-    <div className={`admin ${open ? 'is-open' : ''} ${collapsed ? 'is-collapsed' : ''}`}>
-      <aside className="admin-side">
-        <div className="admin-brand">
-          <Image src="/img/rubin-logo.png" alt="PT IKN" width={34} height={34} />
-          <div>
-            <strong>PT IKN</strong>
-            <span>Back-office</span>
-          </div>
+    <div className={`${styles.shell} ${open ? styles.open : ''} ${collapsed ? styles.collapsed : ''}`}>
+      <aside className={styles.sidebar}>
+        <div className={styles.sidebarHeader}>
+          <Link href="/admin" className={styles.brand}>
+            <Image src="/img/rubin-logo.png" alt="PT IKN" width={34} height={34} />
+            <div className={styles.brandText}>
+              <strong>PT IKN</strong>
+              <span>Back-office</span>
+            </div>
+          </Link>
+          <SidebarToggle
+            expanded={open}
+            onClick={() => setOpen(false)}
+            className={styles.drawerClose}
+            closeLabel="Tutup menu admin"
+          />
         </div>
 
-        <nav className="admin-nav" aria-label="Navigasi admin">
+        <nav className={styles.nav} aria-label="Navigasi admin">
           {groups.map((g) => {
             const isCollapsible = g.title !== 'Utama';
             const isExpanded = !isCollapsible || expandedGroups[g.title];
             
             return (
-              <div key={g.title} className={`admin-nav-group ${isExpanded ? 'is-expanded' : ''}`}>
+              <div key={g.title} className={`${styles.navGroup} ${isExpanded ? styles.expanded : ''}`}>
                 {isCollapsible ? (
                   <button 
                     type="button" 
-                    className="admin-nav-title-btn"
+                    className={styles.groupButton}
                     onClick={() => setExpandedGroups(prev => ({ ...prev, [g.title]: !prev[g.title] }))}
                   >
                     <span>{g.title}</span>
-                    <Icon name="arrow" size={10} className="admin-nav-caret" />
+                    <Icon name="arrow" size={10} className={styles.caret} />
                   </button>
                 ) : (
-                  <span className="admin-nav-title">{g.title}</span>
+                  <span className={styles.groupTitle}>{g.title}</span>
                 )}
                 
-                <div className="admin-nav-items">
+                <div className={styles.navItems}>
                   {g.items.map((it) => {
                     const active =
                       it.href === '/admin'
@@ -145,8 +195,9 @@ export default function AdminShell({ children }: { children: ReactNode }) {
                       <Link
                         key={it.href}
                         href={it.href}
-                        className={`admin-nav-link ${active ? 'is-active' : ''}`}
+                        className={`${styles.navLink} ${active ? styles.active : ''}`}
                         onClick={() => setOpen(false)}
+                        title={collapsed && !isMobile ? it.label : undefined}
                       >
                         <Icon name={it.icon} size={17} />
                         <span>{it.label}</span>
@@ -159,33 +210,26 @@ export default function AdminShell({ children }: { children: ReactNode }) {
           })}
         </nav>
 
-        <button type="button" className="admin-logout" onClick={handleLogout}>
+        <button type="button" className={styles.logout} onClick={handleLogout} title={collapsed && !isMobile ? 'Keluar' : undefined}>
           <Icon name="arrow" size={16} /> <span>Keluar</span>
         </button>
       </aside>
 
-      <div className="admin-main">
-        <header className="admin-top">
-          <button
-            className="admin-burger"
-            aria-label="Menu"
-            aria-expanded={open || !collapsed}
-            onClick={() => {
-              if (typeof window !== 'undefined' && window.innerWidth <= 1000) {
-                setOpen((v) => !v);
-              } else {
-                setCollapsed((v) => !v);
-              }
-            }}
-          >
-            <span /><span /><span />
-          </button>
-          <div className="admin-top-actions">
+      <div className={styles.main}>
+        <header className={styles.topbar}>
+          <SidebarToggle
+            expanded={isMobile ? open : collapsed}
+            onClick={toggleSidebar}
+            openLabel="Buka menu admin"
+            closeLabel={isMobile ? 'Tutup menu admin' : 'Ciutkan sidebar admin'}
+          />
+          <div className={styles.topActions}>
+            <LangToggle />
             <ThemeToggle />
-            <Link href="/" className="admin-top-link">Lihat situs</Link>
-            <span className="admin-user">
-              <span className="admin-user-avatar">{initials}</span>
-              <span className="admin-user-meta">
+            <Link href="/" className={styles.siteLink}>Lihat situs</Link>
+            <span className={styles.user}>
+              <span className={styles.avatar}>{initials}</span>
+              <span className={styles.userMeta}>
                 <strong>{admin.name}</strong>
                 <small>{roleLabels[admin.role]}</small>
               </span>
@@ -193,11 +237,13 @@ export default function AdminShell({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        <div className="admin-content">{children}</div>
+        <div className={styles.content}>{children}</div>
       </div>
 
       <button
-        className="admin-scrim"
+        className={styles.scrim}
+        type="button"
+        aria-label="Tutup menu admin"
         aria-hidden={!open}
         tabIndex={-1}
         onClick={() => setOpen(false)}

@@ -1,17 +1,18 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import { nav, company, contact, locations } from '@/lib/site';
+import styles from '@/components/Footer.module.css';
 
 export default function Footer() {
   const year = new Date().getFullYear();
   const primaryLocation = locations[0];
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
       <div className="container">
-        <div className="footer-top">
-          <div className="footer-lead">
+        <div className={styles.top}>
+          <div>
             <span className="label label-amber">/ {company.location}</span>
-            <p className="footer-headline">
+            <p className={styles.headline}>
               Karet hilir Nusantara,<br />diproses untuk dunia.
             </p>
             <Link href="/kontak" className="btn btn-amber">
@@ -19,8 +20,8 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="footer-cols">
-            <div className="footer-col">
+          <div className={styles.columns}>
+            <div className={styles.column}>
               <span className="label">Navigasi</span>
               <ul>
                 {nav.map((item) => (
@@ -31,7 +32,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="footer-col">
+            <div className={styles.column}>
               <span className="label">Kontak</span>
               <ul>
                 {contact.emails.map((e) => (
@@ -47,13 +48,13 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="footer-col">
+            <div className={styles.column}>
               <span className="label">Ikuti</span>
               <ul>
                 {contact.social.map((s) => (
                   <li key={s.label}>
                     <a href={s.href} target="_blank" rel="noreferrer">
-                      {s.label} <span className="footer-handle">{s.handle}</span>
+                      {s.label} <span className={styles.handle}>{s.handle}</span>
                     </a>
                   </li>
                 ))}
@@ -62,9 +63,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-base">
-          <span className="footer-wordmark">IKN</span>
-          <div className="footer-fine">
+        <div className={styles.base}>
+          <span className={styles.wordmark}>IKN</span>
+          <div className={styles.fine}>
             <span>© {year} {company.name}</span>
             <span>Anak perusahaan {company.parent}</span>
           </div>

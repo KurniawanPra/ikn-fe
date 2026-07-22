@@ -1,0 +1,19 @@
+.card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+}
+
+.cardTitle {
+  margin: 0;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 650;
+}
+
+.cardBody {
+  padding: 20px 22px;
+}

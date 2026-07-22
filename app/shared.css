@@ -1,0 +1,29 @@
+/* Shared primitives used across public, customer, and admin route groups. */
+.btn-sm { padding: 11px 18px; font-size: 0.72rem; }
+.btn-block { width: 100%; justify-content: center; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.form { display: flex; flex-direction: column; gap: 20px; }
+.form label { display: flex; flex-direction: column; gap: 8px; }
+.form .label { color: var(--ink); }
+.form input, .form textarea { padding: 13px 0; border: 0; border-bottom: 1px solid var(--line-strong); background: transparent; color: var(--ink); resize: vertical; font-family: var(--font-sans); font-size: 0.98rem; transition: border-color 0.2s var(--ease); }
+.form input::placeholder, .form textarea::placeholder { color: #a49d8f; }
+.form input:focus, .form textarea:focus { outline: none; border-color: var(--green); }
+.form .btn { align-self: flex-start; margin-top: 8px; }
+.form-note { color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; }
+
+.form-error { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border: 1px solid rgba(178, 60, 50, 0.3); border-radius: 10px; background: rgba(178, 60, 50, 0.1); color: #b23c32; font-size: 0.9rem; }
+[data-theme='dark'] .form-error { color: #e8897f; }
+.input-wrap { position: relative; display: block; }
+.input-wrap input { width: 100%; padding-right: 96px; }
+.input-reveal { position: absolute; top: 50%; right: 12px; border: 0; background: none; color: var(--green); cursor: pointer; transform: translateY(-50%); font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.input-reveal:hover { text-decoration: underline; }
+
+.auth-role-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 24px; padding: 4px; border: 1px solid var(--line); border-radius: 11px; background: var(--paper-2); }
+.auth-role-switch a { padding: 10px 12px; border-radius: 8px; color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.7rem; text-align: center; }
+.auth-role-switch a.is-active { background: var(--surface); color: var(--green); box-shadow: 2px 2px 6px var(--neu-dark), -2px -2px 6px var(--neu-light); }
+.auth-demo { margin-top: 4px; padding: 14px 16px; border: 1px dashed var(--line-strong); border-radius: 10px; background: var(--surface); }
+.auth-demo .label, .auth-demo .field-label { display: block; margin-bottom: 8px; }
+.auth-demo ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.auth-demo li { color: var(--ink-soft); font-size: 0.82rem; }
+.auth-demo code { padding: 2px 6px; border-radius: 5px; background: var(--paper-2); color: var(--ink); font-family: var(--font-mono); font-size: 0.78rem; }

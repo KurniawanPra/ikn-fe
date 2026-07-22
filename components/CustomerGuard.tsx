@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
+import SessionLoader from '@/components/SessionLoader';
 
 export default function CustomerGuard({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function CustomerGuard({ children }: { children: ReactNode }) {
   }, [ready, customer, admin, pathname, router]);
 
   if (!ready || !customer || admin) {
-    return <p className="form-note">Memuat sesi...</p>;
+    return <SessionLoader message="Memuat sesi customer..." portalName="Portal Customer" />;
   }
 
   return children;

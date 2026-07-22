@@ -9,6 +9,7 @@ import OrderTracking from '@/components/OrderTracking';
 import PaymentProof from '@/components/PaymentProof';
 import StatusBadge from '@/components/StatusBadge';
 import { useAuth } from '@/components/AuthProvider';
+import { useTransactions } from '@/components/TransactionProvider';
 import {
   bankById,
   getOrderForCustomer,
@@ -17,10 +18,12 @@ import {
   shippingById,
 } from '@/lib/commerce';
 import { formatDate, formatIDR } from '@/lib/format';
+import styles from './CustomerOrderDetail.module.css';
 
 export default function CustomerOrderDetail({ number }: { number: string }) {
   const { customer } = useAuth();
-  const order = customer ? getOrderForCustomer(number, customer.id) : null;
+  const { orders, updateOrder } = useTransactions();
+  const order = customer ? getOrderForCustomer(number, customer.id, orders) : null;
   const [received, setReceived] = useState(false);
   const [reviewed, setReviewed] = useState(false);
 
@@ -36,6 +39,8 @@ export default function CustomerOrderDetail({ number }: { number: string }) {
     );
   }
 
+  const currentOrder = order;
+
   const status = orderStatus[order.status];
   const payment = paymentStatus[order.payment];
   const bank = bankById(order.bank);
@@ -45,7 +50,27 @@ export default function CustomerOrderDetail({ number }: { number: string }) {
 
   function submitReview(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    updateOrder(currentOrder.number, { reviewed: true });
     setReviewed(true);
+  }
+
+  function confirmReceived() {
+    const at = new Date().toISOString();
+    updateOrder(currentOrder.number, {
+      status: 'completed',
+      timeline: [...currentOrder.timeline, { status: 'completed', at }],
+    });
+    setReceived(true);
+  }
+
+  function markProofUploaded() {
+    const at = new Date().toISOString();
+    updateOrder(currentOrder.number, {
+      proofUploaded: true,
+      status: 'awaiting_verification',
+      payment: 'awaiting_confirmation',
+      timeline: [...currentOrder.timeline, { status: 'awaiting_verification', at }],
+    });
   }
 
   return (
@@ -59,9 +84,9 @@ export default function CustomerOrderDetail({ number }: { number: string }) {
 
       <div className="acct-detail-grid">
         <div className="acct-detail-main">
-          <section className="admin-card">
-            <h2 className="admin-card-title">Item pesanan</h2>
-            <div className="admin-card-body">
+          <section className={styles.card}>
+            <h2 className={styles.cardTitle}>Item pesanan</h2>
+            <div className={styles.cardBody}>
               {order.items.map((item) => (
                 <div key={item.slug} className="co-item"><span className="co-item-name">{item.name} <small>({item.code}) ×{item.qty} {item.unit}</small></span><span>{formatIDR(item.price * item.qty)}</span></div>
               ))}
@@ -72,12 +97,12 @@ export default function CustomerOrderDetail({ number }: { number: string }) {
             </div>
           </section>
 
-          <section className="admin-card">
-            <h2 className="admin-card-title">Lacak pesanan</h2>
-            <div className="admin-card-body">
+          <section id="tracking" className={styles.card}>
+            <h2 className={styles.cardTitle}>Lacak pesanan</h2>
+            <div className={styles.cardBody}>
               <OrderTracking order={order} />
               {order.trackingNo && <p className="acct-track-no">No. resi: <strong>{order.trackingNo}</strong></p>}
-              {canConfirm && <button type="button" className="btn btn-solid btn-sm order-action" onClick={() => setReceived(true)}>Konfirmasi barang diterima <Icon name="check" /></button>}
+              {canConfirm && <button type="button" className="btn btn-solid btn-sm order-action" onClick={confirmReceived}>Konfirmasi barang diterima <Icon name="check" /></button>}
               {received && <p className="proof-done order-action"><Icon name="check" size={18} /> Penerimaan barang sudah dikonfirmasi.</p>}
             </div>
           </section>
@@ -99,9 +124,9 @@ export default function CustomerOrderDetail({ number }: { number: string }) {
           )}
 
           {(canReview || reviewed || order.reviewed) && (
-            <section className="admin-card">
-              <h2 className="admin-card-title">Ulasan produk</h2>
-              <div className="admin-card-body">
+            <section className={styles.card}>
+              <h2 className={styles.cardTitle}>Ulasan produk</h2>
+              <div className={styles.cardBody}>
                 {reviewed || order.reviewed ? (
                   <p className="proof-done"><Icon name="check" size={18} /> Terima kasih, ulasan untuk pesanan ini sudah dikirim.</p>
                 ) : (
@@ -117,17 +142,17 @@ export default function CustomerOrderDetail({ number }: { number: string }) {
         </div>
 
         <aside className="acct-detail-side">
-          <section className="admin-card">
-            <h2 className="admin-card-title">Pembayaran</h2>
-            <div className="admin-card-body">
+          <section id="payment" className={styles.card}>
+            <h2 className={styles.cardTitle}>Pembayaran</h2>
+            <div className={styles.cardBody}>
               {bank && <div className="co-bank payment-bank"><span className="co-bank-name">{bank.bank}</span><span className="co-bank-no">{bank.number}</span><span className="co-bank-holder">a.n. {bank.holder}</span></div>}
-              {order.payment === 'paid' ? <p className="proof-done"><Icon name="check" size={18} /> Pembayaran telah diverifikasi admin.</p> : <PaymentProof uploaded={Boolean(order.proofUploaded) && order.payment !== 'rejected'} />}
+              {order.payment === 'paid' ? <p className="proof-done"><Icon name="check" size={18} /> Pembayaran telah diverifikasi admin.</p> : <PaymentProof uploaded={Boolean(order.proofUploaded) && order.payment !== 'rejected'} onUploaded={markProofUploaded} />}
             </div>
           </section>
 
-          <section className="admin-card">
-            <h2 className="admin-card-title">Alamat pengiriman</h2>
-            <div className="admin-card-body"><p className="acct-addr"><strong>{order.address.label}</strong><br />{order.address.recipient}<br />{order.address.phone}<br />{order.address.line}</p></div>
+          <section className={styles.card}>
+            <h2 className={styles.cardTitle}>Alamat pengiriman</h2>
+            <div className={styles.cardBody}><p className="acct-addr"><strong>{order.address.label}</strong><br />{order.address.recipient}<br />{order.address.phone}<br />{order.address.line}</p></div>
           </section>
         </aside>
       </div>

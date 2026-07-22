@@ -7,8 +7,9 @@ import StatusBadge from '@/components/StatusBadge';
 import StarRating from '@/components/StarRating';
 import AddToCart from '@/components/AddToCart';
 import ProductCard from '@/components/ProductCard';
+import ProductDetailPrice from '@/components/ProductDetailPrice';
 import { products, getProduct, getCategory, reviewsForProduct, stockLabels } from '@/lib/catalog';
-import { formatIDR, formatDate } from '@/lib/format';
+import { formatDate } from '@/lib/format';
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -73,13 +74,7 @@ export default function ProductDetail({ params }: { params: { slug: string } }) 
 
               <p className="pd-summary">{product.summary}</p>
 
-              <div className="pd-price">
-                {product.priceMode === 'fixed' ? (
-                  <>{formatIDR(product.price)}<small>/{product.unit}</small></>
-                ) : (
-                  <span className="pcard-quote">Harga berdasarkan penawaran</span>
-                )}
-              </div>
+              <ProductDetailPrice product={product} />
 
               {highlights.length > 0 && (
                 <ul className="pd-highlights">

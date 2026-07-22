@@ -6,7 +6,7 @@ import type { IconName } from '@/lib/types';
 interface AdminPageHeadProps {
   title: string;
   desc?: string;
-  action?: { label: string; icon?: IconName };
+  action?: { label: string; icon?: IconName; onClick?: () => void };
 }
 
 export function AdminPageHead({ title, desc, action }: AdminPageHeadProps) {
@@ -17,7 +17,7 @@ export function AdminPageHead({ title, desc, action }: AdminPageHeadProps) {
         {desc && <p className="admin-desc">{desc}</p>}
       </div>
       {action && (
-        <button type="button" className="btn btn-solid btn-sm">
+        <button type="button" className="btn btn-solid btn-sm" onClick={action.onClick}>
           <Icon name={action.icon || 'plus'} size={16} /> {action.label}
         </button>
       )}
@@ -79,19 +79,38 @@ export function DataTable<T extends object>({
   );
 }
 
-// Baris aksi kecil pada tabel (Detail / Edit / Hapus) — mock, non-fungsional.
-export function RowActions({ actions = ['Detail', 'Edit', 'Hapus'] }: { actions?: string[] }) {
+// Aksi penghapusan permanen tidak disediakan. Gunakan status Nonaktif sebagai soft delete.
+export interface RowAction {
+  label: string;
+  onClick?: () => void;
+  tone?: 'default' | 'danger' | 'success';
+  disabled?: boolean;
+}
+
+export function RowActions({
+  actions = ['Detail', 'Edit', 'Nonaktifkan'],
+}: {
+  actions?: Array<string | RowAction>;
+}) {
   return (
     <div className="row-actions">
-      {actions.map((a) => (
-        <button
-          key={a}
-          type="button"
-          className={`row-act ${a === 'Hapus' ? 'row-act-danger' : ''}`}
-        >
-          {a}
-        </button>
-      ))}
+      {actions.map((action) => {
+        const item: RowAction = typeof action === 'string' ? { label: action } : action;
+        const isDanger = item.tone === 'danger' || ['Nonaktifkan', 'Tolak'].includes(item.label);
+        const isSuccess = item.tone === 'success' || item.label === 'Aktifkan';
+
+        return (
+          <button
+            key={item.label}
+            type="button"
+            className={`row-act${isDanger ? ' row-act-danger' : ''}${isSuccess ? ' row-act-success' : ''}`}
+            onClick={item.onClick}
+            disabled={item.disabled}
+          >
+            {item.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -101,11 +120,12 @@ interface AdminCardProps {
   title?: string;
   children: ReactNode;
   foot?: ReactNode;
+  className?: string;
 }
 
-export function AdminCard({ title, children, foot }: AdminCardProps) {
+export function AdminCard({ title, children, foot, className = '' }: AdminCardProps) {
   return (
-    <section className="admin-card">
+    <section className={`admin-card ${className}`.trim()}>
       {title && <h2 className="admin-card-title">{title}</h2>}
       <div className="admin-card-body">{children}</div>
       {foot && <div className="admin-card-foot">{foot}</div>}

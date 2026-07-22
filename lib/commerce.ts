@@ -1,217 +1,72 @@
-// ============================ COMMERCE (MOCK) ============================
-// Status order & pembayaran (sesuai PRD §16), rekening bank, biaya tambahan,
-// dan contoh order untuk halaman customer & admin. Semua data mock.
-
+// Data awal transaksi berasal dari JSON. TransactionProvider memindahkannya
+// ke localStorage agar checkout dan perubahan status tetap persisten.
+import transactionJson from '@/data/transactions.json';
 import type {
   AdditionalFee,
   BankAccount,
+  CustomerDashboardStats,
   Order,
   OrderStatusKey,
   PaymentStatusKey,
   ShippingMethod,
   StatusLabel,
-  CustomerDashboardStats,
 } from '@/lib/types';
 
-// ---- Status order ----
-export const orderStatus: Record<OrderStatusKey, StatusLabel> = {
-  awaiting_payment: { id: 'Menunggu Pembayaran', en: 'Awaiting Payment', tone: 'warn' },
-  awaiting_verification: { id: 'Menunggu Verifikasi', en: 'Awaiting Verification', tone: 'warn' },
-  processing: { id: 'Diproses', en: 'Processing', tone: 'info' },
-  packing: { id: 'Dikemas', en: 'Packing', tone: 'info' },
-  shipped: { id: 'Dikirim', en: 'Shipped', tone: 'info' },
-  delivered: { id: 'Diterima', en: 'Delivered', tone: 'ok' },
-  completed: { id: 'Selesai', en: 'Completed', tone: 'ok' },
-  cancelled: { id: 'Dibatalkan', en: 'Cancelled', tone: 'bad' },
-};
-
-// ---- Status pembayaran ----
-export const paymentStatus: Record<PaymentStatusKey, StatusLabel> = {
-  unpaid: { id: 'Belum Dibayar', en: 'Unpaid', tone: 'warn' },
-  awaiting_confirmation: { id: 'Menunggu Konfirmasi', en: 'Awaiting Confirmation', tone: 'warn' },
-  paid: { id: 'Dibayar', en: 'Paid', tone: 'ok' },
-  rejected: { id: 'Ditolak', en: 'Rejected', tone: 'bad' },
-  expired: { id: 'Kedaluwarsa', en: 'Expired', tone: 'bad' },
-};
-
-// Urutan tahap untuk stepper tracking
-export const trackingSteps: OrderStatusKey[] = [
-  'awaiting_payment',
-  'awaiting_verification',
-  'processing',
-  'packing',
-  'shipped',
-  'delivered',
-  'completed',
-];
-
-// ---- Rekening bank tujuan (mock — dikonfigurasi Admin) ----
-export const bankAccounts: BankAccount[] = [
-  { id: 'bca', bank: 'Bank BCA', number: '0123456789', holder: 'PT Industri Karet Nusantara', active: true },
-  { id: 'mandiri', bank: 'Bank Mandiri', number: '1060099887766', holder: 'PT Industri Karet Nusantara', active: true },
-  { id: 'bni', bank: 'Bank BNI', number: '0987654321', holder: 'PT Industri Karet Nusantara', active: false },
-];
-
-// ---- Biaya tambahan (mock) ----
-export const additionalFees: AdditionalFee[] = [
-  { id: 'ship-medan', label: 'Ongkir Medan & sekitar', type: 'shipping', amount: 25000, active: true },
-  { id: 'ship-sumut', label: 'Ongkir Sumatera Utara', type: 'shipping', amount: 55000, active: true },
-  { id: 'ship-luar', label: 'Ongkir luar Sumatera', type: 'shipping', amount: 150000, active: true },
-  { id: 'admin-fee', label: 'Biaya administrasi', type: 'admin', amount: 5000, active: true },
-];
-
-export const shippingMethods: ShippingMethod[] = [
-  { id: 'ship-medan', label: 'Reguler Medan (1–2 hari)', amount: 25000 },
-  { id: 'ship-sumut', label: 'Reguler Sumatera Utara (2–4 hari)', amount: 55000 },
-  { id: 'ship-luar', label: 'Kargo luar Sumatera (4–9 hari)', amount: 150000 },
-];
-
-// ---- Contoh order (mock) untuk history & admin ----
-export const orders: Order[] = [
-  {
-    number: 'IKN-20260710-00042',
-    date: '2026-07-10T09:24:00',
-    customer: { id: 'c1', name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
-    items: [
-      { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 100, unit: 'kg', price: 185000 },
-    ],
-    subtotal: 18500000,
-    shipping: 150000,
-    adminFee: 5000,
-    total: 18655000,
-    status: 'processing',
-    payment: 'paid',
-    bank: 'bca',
-    shippingMethod: 'ship-luar',
-    address: {
-      label: 'Gudang Utama',
-      recipient: 'Andi Wijaya',
-      phone: '+62 812 1111 2222',
-      line: 'Kawasan Industri Pulogadung Blok C2, Jakarta Timur 13920',
-    },
-    trackingNo: 'JNE-8890021',
-    proofUploaded: true,
-    timeline: [
-      { status: 'awaiting_payment', at: '2026-07-10T09:24:00' },
-      { status: 'awaiting_verification', at: '2026-07-10T14:02:00' },
-      { status: 'processing', at: '2026-07-11T08:15:00' },
-    ],
-  },
-  {
-    number: 'IKN-20260712-00051',
-    date: '2026-07-12T16:40:00',
-    customer: { id: 'c2', name: 'PT Maritim Warna', email: 'po@maritimwarna.com', pic: 'Sari Dewi' },
-    items: [
-      { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 50, unit: 'kg', price: 185000 },
-    ],
-    subtotal: 9250000,
-    shipping: 55000,
-    adminFee: 5000,
-    total: 9310000,
-    status: 'awaiting_verification',
-    payment: 'awaiting_confirmation',
-    bank: 'mandiri',
-    shippingMethod: 'ship-sumut',
-    address: {
-      label: 'Kantor',
-      recipient: 'Sari Dewi',
-      phone: '+62 813 3333 4444',
-      line: 'Jl. Pelabuhan No. 12, Belawan, Medan 20411',
-    },
-    trackingNo: null,
-    proofUploaded: true,
-    timeline: [
-      { status: 'awaiting_payment', at: '2026-07-12T16:40:00' },
-      { status: 'awaiting_verification', at: '2026-07-12T18:10:00' },
-    ],
-  },
-  {
-    number: 'IKN-20260715-00058',
-    date: '2026-07-15T11:05:00',
-    customer: { id: 'c1', name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
-    items: [
-      { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 25, unit: 'kg', price: 185000 },
-    ],
-    subtotal: 4625000,
-    shipping: 150000,
-    adminFee: 5000,
-    total: 4780000,
-    status: 'awaiting_payment',
-    payment: 'unpaid',
-    bank: 'bca',
-    shippingMethod: 'ship-luar',
-    address: {
-      label: 'Gudang Utama',
-      recipient: 'Andi Wijaya',
-      phone: '+62 812 1111 2222',
-      line: 'Kawasan Industri Pulogadung Blok C2, Jakarta Timur 13920',
-    },
-    trackingNo: null,
-    proofUploaded: false,
-    dueAt: '2026-07-17T11:05:00',
-    timeline: [{ status: 'awaiting_payment', at: '2026-07-15T11:05:00' }],
-  },
-  {
-    number: 'IKN-20260628-00019',
-    date: '2026-06-28T10:00:00',
-    customer: { id: 'c1', name: 'Coating Solutions Co.', email: 'buyer@coatingsolutions.co.id', pic: 'Andi Wijaya' },
-    items: [
-      { slug: 'resiprene-35', name: 'Resiprene 35', code: 'RSP-35', qty: 200, unit: 'kg', price: 185000 },
-    ],
-    subtotal: 37000000,
-    shipping: 150000,
-    adminFee: 5000,
-    total: 37155000,
-    status: 'completed',
-    payment: 'paid',
-    bank: 'bca',
-    shippingMethod: 'ship-luar',
-    address: {
-      label: 'Gudang Utama',
-      recipient: 'Andi Wijaya',
-      phone: '+62 812 1111 2222',
-      line: 'Kawasan Industri Pulogadung Blok C2, Jakarta Timur 13920',
-    },
-    trackingNo: 'JNE-8712004',
-    proofUploaded: true,
-    reviewed: true,
-    timeline: [
-      { status: 'awaiting_payment', at: '2026-06-28T10:00:00' },
-      { status: 'awaiting_verification', at: '2026-06-28T13:00:00' },
-      { status: 'processing', at: '2026-06-29T09:00:00' },
-      { status: 'packing', at: '2026-06-29T15:00:00' },
-      { status: 'shipped', at: '2026-06-30T10:00:00' },
-      { status: 'delivered', at: '2026-07-03T14:00:00' },
-      { status: 'completed', at: '2026-07-04T09:00:00' },
-    ],
-  },
-];
-
-export function getOrder(number: string) {
-  return orders.find((o) => o.number === number) || null;
+interface TransactionData {
+  orderStatus: Record<OrderStatusKey, StatusLabel>;
+  paymentStatus: Record<PaymentStatusKey, StatusLabel>;
+  trackingSteps: OrderStatusKey[];
+  bankAccounts: BankAccount[];
+  additionalFees: AdditionalFee[];
+  shippingMethods: ShippingMethod[];
+  orders: Order[];
 }
 
-export function getOrdersByCustomer(customerId: string): Order[] {
-  return orders
+const transactions = transactionJson as unknown as TransactionData;
+
+export const orderStatus = transactions.orderStatus;
+export const paymentStatus = transactions.paymentStatus;
+export const trackingSteps = transactions.trackingSteps;
+export const bankAccounts = transactions.bankAccounts;
+export const additionalFees = transactions.additionalFees;
+export const shippingMethods = transactions.shippingMethods;
+export const orders = transactions.orders;
+
+export function getOrder(number: string, source: readonly Order[] = orders): Order | null {
+  return source.find((order) => order.number === number) || null;
+}
+
+export function getOrdersByCustomer(
+  customerId: string,
+  source: readonly Order[] = orders,
+): Order[] {
+  return source
     .filter((order) => order.customer.id === customerId)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export function getOrderForCustomer(number: string, customerId: string): Order | null {
-  return orders.find(
-    (order) => order.number === number && order.customer.id === customerId
+export function getOrderForCustomer(
+  number: string,
+  customerId: string,
+  source: readonly Order[] = orders,
+): Order | null {
+  return source.find(
+    (order) => order.number === number && order.customer.id === customerId,
   ) ?? null;
 }
 
-export function getCustomerDashboardStats(customerId: string): CustomerDashboardStats {
-  const customerOrders = getOrdersByCustomer(customerId);
+export function getCustomerDashboardStats(
+  customerId: string,
+  source: readonly Order[] = orders,
+): CustomerDashboardStats {
+  const customerOrders = getOrdersByCustomer(customerId, source);
   return {
     totalOrders: customerOrders.length,
     awaitingPayment: customerOrders.filter((order) =>
-      ['unpaid', 'rejected'].includes(order.payment)
+      ['unpaid', 'rejected'].includes(order.payment),
     ).length,
     inProgress: customerOrders.filter((order) =>
-      ['awaiting_verification', 'processing', 'packing', 'shipped', 'delivered'].includes(order.status)
+      ['awaiting_verification', 'processing', 'packing', 'shipped', 'delivered'].includes(order.status),
     ).length,
     completed: customerOrders.filter((order) => order.status === 'completed').length,
     transactionValue: customerOrders
@@ -221,9 +76,9 @@ export function getCustomerDashboardStats(customerId: string): CustomerDashboard
 }
 
 export function bankById(id: string) {
-  return bankAccounts.find((b) => b.id === id) || null;
+  return bankAccounts.find((bank) => bank.id === id) || null;
 }
 
 export function shippingById(id: string) {
-  return shippingMethods.find((s) => s.id === id) || null;
+  return shippingMethods.find((method) => method.id === id) || null;
 }

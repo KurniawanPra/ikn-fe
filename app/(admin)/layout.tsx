@@ -1,5 +1,6 @@
 import AdminShell from '@/components/admin/AdminShell';
 import type { ReactNode } from 'react';
+import '@/components/admin.css';
 
 export const metadata = {
   title: { default: 'Admin · PT IKN', template: '%s · Admin PT IKN' },

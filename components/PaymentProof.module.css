@@ -1,0 +1,6 @@
+.proof { display: block; }
+.note { margin-bottom: 12px; color: var(--ink-soft); font-size: 0.86rem; }
+.dropzone { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 12px; padding: 22px 16px; border: 1.5px dashed var(--line-strong); border-radius: 12px; color: var(--ink-soft); cursor: pointer; text-align: center; font-size: 0.86rem; transition: border-color 0.2s var(--ease), background 0.2s var(--ease); }
+.dropzone:hover { border-color: var(--green); background: var(--green-tint); }
+.done { display: flex; align-items: center; gap: 8px; color: var(--green); font-size: 0.88rem; }
+.done svg { flex-shrink: 0; }
